@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-        /* ========= SIDEBAR (modern, clean) ========= */
+        /* ========= SIDEBAR (modern, clean, scrollable) ========= */
         .sidebar {
             width: 320px;
             background: #ffffff;
@@ -73,14 +73,14 @@
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 14px 24px;
-            margin: 4px 12px;
+            gap: 12px;
+            padding: 12px 20px;
+            margin: 2px 12px;
             border-radius: 12px;
             text-decoration: none;
             color: #2c3f4f;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
             background: transparent;
         }
@@ -100,7 +100,7 @@
         }
 
         .check-icon {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #2bae66;
             width: 24px;
@@ -109,6 +109,8 @@
 
         .nav-item .label {
             flex: 1;
+            white-space: normal;
+            line-height: 1.3;
         }
 
         /* ========= MAIN CONTENT (scrolling area) ========= */
@@ -150,7 +152,7 @@
         }
 
         .card-header h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #0b2b3b;
             margin: 8px 0 8px 0;
@@ -214,12 +216,6 @@
             margin: 6px 0;
         }
 
-        hr {
-            margin: 24px 0;
-            border: 0;
-            border-top: 1px solid #e2e8f0;
-        }
-
         .btn-youtube {
             display: inline-flex;
             align-items: center;
@@ -234,6 +230,7 @@
             margin-top: 12px;
             transition: 0.2s;
             border: none;
+            cursor: pointer;
         }
 
         .btn-youtube:hover {
@@ -252,13 +249,16 @@
 
         @media (max-width: 780px) {
             .sidebar {
-                width: 260px;
+                width: 280px;
             }
             .main-content {
                 padding: 20px;
             }
             .card-header h2 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
+            }
+            .nav-item .label {
+                font-size: 0.75rem;
             }
         }
 
@@ -280,236 +280,342 @@
     <div class="sidebar-header">
         <h2>🔐 DEFENDING & SECURING SYSTEMS</h2>
         <p>Course 3 · Advanced Network Defense</p>
-        <div class="course-badge">🎯 SOC Analyst Track</div>
+        <div class="course-badge">🎯 SOC Analyst Track · 10 Modules</div>
     </div>
     <div class="nav-list">
-        <a href="#lesson-network" class="nav-item active" data-lesson="network">
+        <a href="#lesson-1" class="nav-item active" data-lesson="1">
             <span class="check-icon">📡</span>
-            <span class="label">4.10 Monitoring Network Traffic</span>
+            <span class="label">1. System Event Logs & SIEM Intro</span>
         </a>
-        <a href="#lesson-siem" class="nav-item" data-lesson="siem">
+        <a href="#lesson-2" class="nav-item" data-lesson="2">
             <span class="check-icon">🔍</span>
-            <span class="label">4.14 SIEM Framework & Architecture</span>
+            <span class="label">2. Network Monitoring & Traffic Analysis</span>
         </a>
-        <a href="#lesson-pcaps" class="nav-item" data-lesson="pcaps">
+        <a href="#lesson-3" class="nav-item" data-lesson="3">
+            <span class="check-icon">🛡️</span>
+            <span class="label">3. Firewall Rules & IPS/IDS</span>
+        </a>
+        <a href="#lesson-4" class="nav-item" data-lesson="4">
+            <span class="check-icon">🏗️</span>
+            <span class="label">4. Security Architecture Map</span>
+        </a>
+        <a href="#lesson-5" class="nav-item" data-lesson="5">
+            <span class="check-icon">⚙️</span>
+            <span class="label">5. Services & Permissions Hardening</span>
+        </a>
+        <a href="#lesson-6" class="nav-item" data-lesson="6">
+            <span class="check-icon">🎣</span>
+            <span class="label">6. Phishing & Attack Vectors</span>
+        </a>
+        <a href="#lesson-7" class="nav-item" data-lesson="7">
+            <span class="check-icon">🧪</span>
+            <span class="label">7. Gophish Phishing LAB</span>
+        </a>
+        <a href="#lesson-8" class="nav-item" data-lesson="8">
             <span class="check-icon">📊</span>
-            <span class="label">4.12 Traffic Analysis & Packet Capture</span>
+            <span class="label">8. Packet Capture & Wireshark</span>
         </a>
-        <a href="#lesson-threat" class="nav-item" data-lesson="threat">
+        <a href="#lesson-9" class="nav-item" data-lesson="9">
+            <span class="check-icon">🔎</span>
+            <span class="label">9. SIEM Correlation & Threat Hunt</span>
+        </a>
+        <a href="#lesson-10" class="nav-item" data-lesson="10">
             <span class="check-icon">⚠️</span>
-            <span class="label">4.16 Threat Hunting with SIEM</span>
+            <span class="label">10. Network Attack Methods</span>
         </a>
     </div>
     <div style="margin-top: auto; padding: 20px 24px; border-top: 1px solid #edf2f7; font-size: 0.7rem; color: #8a9cb0;">
-        ⚡ Complete all modules<br>✔️ Hands-on exercises included
+        ⚡ Complete playlist<br>✔️ Hands-on labs & exercises
     </div>
 </div>
 
 <div class="main-content">
-    <!-- LESSON 1: Monitoring Network Traffic -->
-    <div id="lesson-network" class="lesson-card active-lesson">
+    <!-- LESSON 1: System Event Logs | SIEM Introduction -->
+    <div id="lesson-1" class="lesson-card">
         <div class="card-header">
-            <span class="lesson-badge">📡 LESSON 4.10</span>
-            <h2>Monitoring Network Traffic</h2>
-            <div class="sub">Deep packet inspection · Flow analysis · Anomaly detection</div>
+            <span class="lesson-badge">📺 VIDEO 1 / 10</span>
+            <h2>System Event Logs & SIEM Fundamentals</h2>
+            <div class="sub">Event management · Log aggregation · Security monitoring</div>
         </div>
         <div class="video-container">
             <div class="video-wrapper">
-                <!-- Official style: cybersecurity network traffic monitoring (real educational video) -->
-                <iframe src="https://www.youtube.com/watch?v=PwEFbNGI4zA&list=PL8yj0vXkratqeqQQetlmO3mItCFDcZahK&index=1&pp=iAQB" title="System Event Logs | Event Management Solution (SIEM)" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/PwEFbNGI4zA?rel=0&modestbranding=1" title="System Event Logs | SIEM Introduction" allowfullscreen></iframe>
             </div>
         </div>
         <div class="description-text">
-            <p><strong>📖 Why monitor network traffic?</strong> Continuous surveillance helps identify malicious activities, performance bottlenecks, and policy violations. In this module, you’ll learn about <strong>flow data (NetFlow/IPFIX)</strong>, <strong>packet capture (PCAP)</strong>, and how to spot command-and-control patterns.</p>
+            <p><strong>📖 Why event logs matter:</strong> System event logs are the cornerstone of any SIEM implementation. This module covers Windows Event Logs, Syslog, and how to centralize logs for real-time threat detection.</p>
             <div class="info-grid">
-                <p>✅ <strong>Key tools:</strong> tcpdump, Wireshark, Zeek (formerly Bro), ntopng.</p>
-                <p>✅ <strong>Common threats detected:</strong> port scanning, DDoS patterns, data exfiltration, ARP spoofing.</p>
-                <p>✅ <strong>Hands-on concept:</strong> Capture live traffic and filter for suspicious DNS queries or unusual outbound connections.</p>
+                <p>✅ <strong>Key concepts:</strong> Event IDs (4624, 4625), log forwarding, Windows Event Collector, Syslog-ng.</p>
+                <p>✅ <strong>Use case:</strong> Detect brute-force attacks by correlating failed login events across multiple systems.</p>
             </div>
-            <p>🔎 After this video, review the quiz (4.11) and then proceed to the SIEM framework. Monitoring is the first pillar of any Security Operations Center (SOC).</p>
-            <a href="https://www.youtube.com/watch?v=kYh9d3tN9BM" target="_blank" class="btn-youtube">▶️ Watch on YouTube &nbsp;→</a>
+            <a href="https://www.youtube.com/watch?v=PwEFbNGI4zA" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube (new tab)</a>
         </div>
     </div>
 
-    <!-- LESSON 2: SIEM Framework (4.14 - 4.15) -->
-    <div id="lesson-siem" class="lesson-card" style="display: none;">
+    <!-- LESSON 2: Network Monitoring & Traffic Analysis -->
+    <div id="lesson-2" class="lesson-card" style="display: none;">
         <div class="card-header">
-            <span class="lesson-badge">🛡️ LESSON 4.14–4.15</span>
-            <h2>SIEM Framework</h2>
-            <div class="sub">Security Information and Event Management · Log aggregation · Correlation</div>
+            <span class="lesson-badge">📺 VIDEO 2 / 10</span>
+            <h2>Network Monitoring & Traffic Analysis</h2>
+            <div class="sub">Deep packet inspection · Flow monitoring · Anomaly detection</div>
         </div>
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/6kftHrT36n4?rel=0" title="What is SIEM? | IBM Security" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/oxh6lHVJOek?rel=0&modestbranding=1" title="Network Monitoring & Traffic Analysis" allowfullscreen></iframe>
             </div>
         </div>
         <div class="description-text">
-            <p><strong>📌 SIEM (Security Information and Event Management)</strong> combines SIM (Security Information Management) and SEM (Security Event Management). Learn how SIEM platforms collect logs from firewalls, servers, endpoints, and network devices to provide real-time analysis.</p>
+            <p><strong>📡 Core techniques:</strong> Learn how to monitor network traffic using NetFlow, sFlow, and packet capture. Identify malicious patterns like port scans, DDoS, and data exfiltration.</p>
             <div class="info-grid">
-                <p>⚙️ <strong>Core components:</strong> Data collection (agents/forwarders), correlation engine, alerting dashboard, and long-term storage.</p>
-                <p>📈 <strong>Popular SIEM solutions:</strong> Splunk ES, IBM QRadar, Microsoft Sentinel, ELK Stack (Elastic Security), Sumo Logic.</p>
-                <p>📋 <strong>Use case:</strong> Correlate failed login attempts + unusual process creation to detect brute-force attacks.</p>
+                <p>🔧 <strong>Tools covered:</strong> tcpdump, Wireshark, Zeek, ntopng, PRTG.</p>
+                <p>🚨 <strong>Threat detection:</strong> Unusual outbound connections, DNS tunneling, beaconing.</p>
             </div>
-            <p>This video covers SIEM architecture, log normalization, and how to build detection rules. Exercises 4.16 and 4.17 will walk you through a simulated SIEM investigation.</p>
-            <a href="https://www.youtube.com/watch?v=6kftHrT36n4" target="_blank" class="btn-youtube">▶️ Deep dive: SIEM explained &nbsp;→</a>
+            <a href="https://www.youtube.com/watch?v=oxh6lHVJOek" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
         </div>
     </div>
 
-    <!-- LESSON 3: Traffic Analysis & Packet Capture (Exercise 4.12 style) -->
-    <div id="lesson-pcaps" class="lesson-card" style="display: none;">
+    <!-- LESSON 3: Firewall Rules & IPS/IDS -->
+    <div id="lesson-3" class="lesson-card" style="display: none;">
         <div class="card-header">
-            <span class="lesson-badge">📡 EXERCISE 4.12–4.13</span>
-            <h2>Traffic Analysis & Packet Capture</h2>
-            <div class="sub">Hands-on with Wireshark · Analyzing PCAPs</div>
+            <span class="lesson-badge">📺 VIDEO 3 / 10</span>
+            <h2>Firewall Rules & IPS/IDS Deep Dive</h2>
+            <div class="sub">Stateful inspection · Signature-based detection · Prevention</div>
         </div>
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/OUfUxHmru8g?rel=0" title="Wireshark Tutorial for Beginners | Network Traffic Analysis" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/7g-dJAHp_r4?rel=0&modestbranding=1" title="Firewall Rules & IPS IDS" allowfullscreen></iframe>
             </div>
         </div>
         <div class="description-text">
-            <p><strong>📂 Exercise scenario:</strong> You are given a suspicious PCAP file containing traffic from an infected workstation. Identify the malicious indicators: beaconing domains, unusual ports, and potential data leak.</p>
+            <p><strong>🛡️ Designing effective rules:</strong> Explore firewall rule optimization, IPS signatures, and how to block malicious traffic inline. Understand the difference between IDS (alert only) and IPS (block).</p>
             <div class="info-grid">
-                <p>🛠️ <strong>Analysis steps:</strong></p>
-                <p>1️⃣ Filter HTTP requests: <code>http.request</code> → locate unusual user-agents.<br>
-                2️⃣ Check DNS queries for algorithmically generated domains (DGA).<br>
-                3️⃣ Use <strong>Statistics → Protocol Hierarchy</strong> to detect unexpected protocols.<br>
-                4️⃣ Follow TCP streams to reassemble exfiltrated data.</p>
+                <p>📌 <strong>Best practices:</strong> Default deny, least privilege, geographic blocking, and TLS inspection.</p>
+                <p>⚙️ <strong>Example:</strong> Create Snort/Suricata rules to detect Log4j exploits.</p>
             </div>
-            <p>💡 <strong>Pro tip:</strong> Combine tshark and grep for command-line analysis. In a SOC, automated packet analysis scripts reduce mean time to detect (MTTD).</p>
-            <p>⬇️ After watching the walkthrough, test your skills with our sample exercise solution (available in course materials).</p>
-            <a href="https://www.youtube.com/watch?v=OUfUxHmru8g" target="_blank" class="btn-youtube">▶️ Wireshark Masterclass &nbsp;→</a>
+            <a href="https://www.youtube.com/watch?v=7g-dJAHp_r4" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
         </div>
     </div>
 
-    <!-- LESSON 4: Threat Hunting with SIEM (Exercise 4.16-4.17) -->
-    <div id="lesson-threat" class="lesson-card" style="display: none;">
+    <!-- LESSON 4: Security Architecture Map (comprehensive) -->
+    <div id="lesson-4" class="lesson-card" style="display: none;">
         <div class="card-header">
-            <span class="lesson-badge">🔎 EXERCISE 4.16–4.17</span>
-            <h2>Threat Hunting with SIEM</h2>
-            <div class="sub">Query languages · Detection rules · Incident response</div>
+            <span class="lesson-badge">📺 VIDEO 4 / 10</span>
+            <h2>Comprehensive Security Architecture Map</h2>
+            <div class="sub">IPS & Firewall Rules · Services · Permissions</div>
         </div>
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/GM6PGSKBP5w?rel=0" title="Threat Hunting with Elastic SIEM" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/ZXPjpVA2kPA?rel=0&modestbranding=1" title="comprehensive security architecture map" allowfullscreen></iframe>
             </div>
         </div>
         <div class="description-text">
-            <p><strong>🎯 Real-world SIEM investigation:</strong> This exercise replicates a lateral movement attack. Using SIEM search (SPL/KQL), you will correlate Windows Event IDs 4624 (logon) and 5140 (network share access) to discover abnormal behavior.</p>
+            <p><strong>🏗️ Blueprint for defense:</strong> This video maps out a complete security architecture: layered firewalls, DMZ, IDS/IPS placement, micro-segmentation, and secure service configurations. Perfect for SOC architects.</p>
             <div class="info-grid">
-                <p>📌 <strong>Detection logic example:</strong><br>
-                <code>index=windows sourcetype=WinEventLog:Security EventCode=4624 AccountName!="SYSTEM"</code><br>
-                → filter out system accounts and map unusual source IPs.</p>
-                <p>✅ <strong>Outcome:</strong> Build a detection rule for pass-the-hash attempts and schedule automated alerts.</p>
-                <p>🏆 After the exercise solution review (4.17), you'll understand how to tune SIEM rules to reduce false positives.</p>
+                <p>📐 <strong>Components:</strong> Next-gen firewall (NGFW), web proxy, email gateway, EDR, SIEM integration.</p>
+                <p>🔐 <strong>Permissions strategy:</strong> Zero-trust model, JIT access, PAM integration.</p>
             </div>
-            <p>🔐 Proactive threat hunting reduces breach dwell time. Combine SIEM with EDR for next-gen defense.</p>
-            <a href="https://www.youtube.com/watch?v=GM6PGSKBP5w" target="_blank" class="btn-youtube">▶️ SIEM hunting demo &nbsp;→</a>
+            <a href="https://www.youtube.com/watch?v=ZXPjpVA2kPA" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 5: Services & Permissions Hardening -->
+    <div id="lesson-5" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 5 / 10</span>
+            <h2>Services & Permissions Hardening</h2>
+            <div class="sub">Least privilege · Service account security · Attack surface reduction</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/e9ZV0sWBfbg?rel=0&modestbranding=1" title="Services & Permissions Hardening" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>⚙️ Reducing risk:</strong> Harden system services and permissions to prevent privilege escalation. Learn about Windows service hardening, Linux capabilities, and removing unnecessary services.</p>
+            <div class="info-grid">
+                <p>📋 <strong>Checklist:</strong> Disable SMBv1, restrict LSASS, use managed service accounts (gMSA).</p>
+                <p>🎯 <strong>Real attack:</strong> How misconfigured services lead to ransomware deployment.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=e9ZV0sWBfbg" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 6: Phishing & Attack Vectors -->
+    <div id="lesson-6" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 6 / 10</span>
+            <h2>Phishing & Modern Attack Vectors</h2>
+            <div class="sub">Social engineering · Email threats · Credential harvesting</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/MTj_KE_UkEg?rel=0&modestbranding=1" title="Phishing & Attack Vectors" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>🎣 Anatomy of phishing:</strong> Understand how attackers craft convincing phishing emails, clone websites, and bypass MFA. Learn to analyze email headers and use threat intel feeds.</p>
+            <div class="info-grid">
+                <p>🚨 <strong>Defense strategies:</strong> DMARC, DKIM, SPF, user awareness training, and simulated phishing campaigns.</p>
+                <p>📈 <strong>Statistics:</strong> 90% of breaches start with phishing — proactive monitoring is key.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=MTj_KE_UkEg" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 7: Gophish Phishing LAB -->
+    <div id="lesson-7" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 7 / 10</span>
+            <h2>Gophish Phishing LAB</h2>
+            <div class="sub">Simulate campaigns · Track clicks · Security awareness</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/y3UKNjBXBss?rel=0&modestbranding=1" title="Gophish Phishing LAB" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>🧪 Hands-on lab:</strong> Set up Gophish — an open-source phishing framework. Create realistic email templates, launch campaigns, and analyze metrics. Perfect for red/blue team exercises.</p>
+            <div class="info-grid">
+                <p>📧 <strong>Lab steps:</strong> Install Gophish, configure SMTP relay, create landing pages, track user behavior.</p>
+                <p>📊 <strong>Metrics to monitor:</strong> Open rate, click rate, credential submission, reporting rate.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=y3UKNjBXBss" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 8: Packet Capture & Wireshark Analysis -->
+    <div id="lesson-8" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 8 / 10</span>
+            <h2>Packet Capture & Wireshark Deep Dive</h2>
+            <div class="sub">PCAP analysis · Filtering · Protocol dissection</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/4ygd5MTv07I?rel=0&modestbranding=1" title="Packet Capture & Wireshark" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>📡 Master Wireshark:</strong> Learn advanced filters, follow TCP streams, export objects, and identify malicious traffic patterns. Detect C2 beacons, unusual TLS certificates, and covert channels.</p>
+            <div class="info-grid">
+                <p>🔍 <strong>Key filters:</strong> <code>http.request.method == "POST"</code>, <code>tls.handshake.extensions_server_name</code>, <code>dns.qry.name contains "malware"</code>.</p>
+                <p>📁 <strong>Exercise:</strong> Analyze a real PCAP from malware-traffic-analysis.net.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=4ygd5MTv07I" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 9: SIEM Correlation & Threat Hunting -->
+    <div id="lesson-9" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 9 / 10</span>
+            <h2>SIEM Correlation & Threat Hunting</h2>
+            <div class="sub">Query languages · Detection rules · Proactive defense</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/1IeGiDiL7KA?rel=0&modestbranding=1" title="SIEM Correlation & Threat Hunting" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>🔎 Hunt like a pro:</strong> Use SPL/KQL to correlate events across firewall, EDR, and identity logs. Build detection rules for lateral movement, persistence, and privilege escalation.</p>
+            <div class="info-grid">
+                <p>📜 <strong>Example rule:</strong> <code>EventCode=4624 AND LogonType=10 AND TargetUserName!="SYSTEM"</code> → Remote interactive logon from unexpected IP.</p>
+                <p>🏆 <strong>Outcome:</strong> Reduce false positives and create automated alerting playbooks.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=1IeGiDiL7KA" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
+        </div>
+    </div>
+
+    <!-- LESSON 10: Network Attack Methods -->
+    <div id="lesson-10" class="lesson-card" style="display: none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 10 / 10</span>
+            <h2>Network Attack Methods & Vectors</h2>
+            <div class="sub">MITRE ATT&CK · Adversary techniques · Defensive countermeasures</div>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/s5SGVj9igrE?rel=0&modestbranding=1" title="Network Attack Methods | Gophish Phishing LAB | Threats" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="description-text">
+            <p><strong>⚠️ Know your adversary:</strong> Explore real-world network attack methods: ARP spoofing, DNS poisoning, MitM, SYN flood, and advanced persistent threats. Understand each technique mapped to MITRE ATT&CK.</p>
+            <div class="info-grid">
+                <p>🗺️ <strong>ATT&CK tactics:</strong> Reconnaissance, Resource Development, Initial Access, Execution, Persistence, Exfiltration.</p>
+                <p>🛡️ <strong>Defenses:</strong> Network segmentation, 802.1X, encrypted DNS (DoH/DoT), and continuous monitoring.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=s5SGVj9igrE" target="_blank" rel="noopener noreferrer" class="btn-youtube">▶️ Watch on YouTube</a>
         </div>
     </div>
 
     <footer>
-        🧠 Course 3: Defending and Securing Systems — Modules 4.10 to 4.17 <br>
-        ✓ Monitoring Network Traffic · ✓ SIEM Framework · ✓ Hands-on Exercises · ✓ Real-time Analysis
+        🧠 Course 3: Defending and Securing Systems — Complete Video Playlist (10 modules) <br>
+        ✓ System Logs · ✓ SIEM · ✓ Firewalls · ✓ Threat Hunting · ✓ Phishing Labs · ✓ Packet Analysis
     </footer>
 </div>
 
 <script>
-    // Smooth navigation between lessons: update active class and show/hide lesson cards
+    // Smooth navigation between 10 lessons
     const navLinks = document.querySelectorAll('.nav-item');
-    const lessonCards = {
-        network: document.getElementById('lesson-network'),
-        siem: document.getElementById('lesson-siem'),
-        pcaps: document.getElementById('lesson-pcaps'),
-        threat: document.getElementById('lesson-threat')
-    };
+    const totalLessons = 10;
+    const lessonCards = {};
+    for (let i = 1; i <= totalLessons; i++) {
+        lessonCards[i] = document.getElementById(`lesson-${i}`);
+    }
 
     function activateLesson(lessonId) {
         // hide all cards
-        Object.values(lessonCards).forEach(card => {
-            if (card) card.style.display = 'none';
-        });
+        for (let i = 1; i <= totalLessons; i++) {
+            if (lessonCards[i]) lessonCards[i].style.display = 'none';
+        }
         // show selected
         if (lessonCards[lessonId]) {
             lessonCards[lessonId].style.display = 'block';
         } else {
-            // fallback to network
-            lessonCards.network.style.display = 'block';
+            lessonCards[1].style.display = 'block'; // fallback
         }
 
         // update active class in sidebar
         navLinks.forEach(link => {
             link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === `#lesson-${lessonId}` || 
-                (lessonId === 'network' && href === '#lesson-network') ||
-                (lessonId === 'siem' && href === '#lesson-siem') ||
-                (lessonId === 'pcaps' && href === '#lesson-pcaps') ||
-                (lessonId === 'threat' && href === '#lesson-threat')) {
-                link.classList.add('active');
-            } else if (lessonId === 'network' && href === '#lesson-network') {
-                link.classList.add('active');
-            } else if (lessonId === 'siem' && href === '#lesson-siem') {
-                link.classList.add('active');
-            } else if (lessonId === 'pcaps' && href === '#lesson-pcaps') {
-                link.classList.add('active');
-            } else if (lessonId === 'threat' && href === '#lesson-threat') {
+            const lessonNum = link.getAttribute('data-lesson');
+            if (lessonNum && parseInt(lessonNum) === lessonId) {
                 link.classList.add('active');
             }
         });
     }
 
-    // handle click on navigation
+    // attach click handlers
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const href = link.getAttribute('href');
-            if (href === '#lesson-network') {
-                activateLesson('network');
-                window.location.hash = 'lesson-network';
-            } else if (href === '#lesson-siem') {
-                activateLesson('siem');
-                window.location.hash = 'lesson-siem';
-            } else if (href === '#lesson-pcaps') {
-                activateLesson('pcaps');
-                window.location.hash = 'lesson-pcaps';
-            } else if (href === '#lesson-threat') {
-                activateLesson('threat');
-                window.location.hash = 'lesson-threat';
+            const lessonNum = link.getAttribute('data-lesson');
+            if (lessonNum) {
+                const id = parseInt(lessonNum);
+                activateLesson(id);
+                window.location.hash = `lesson-${id}`;
             }
         });
     });
 
-    // initial load: check hash or default network
     function loadFromHash() {
-        const hash = window.location.hash.substring(1);
-        if (hash === 'lesson-siem') {
-            activateLesson('siem');
-        } else if (hash === 'lesson-pcaps') {
-            activateLesson('pcaps');
-        } else if (hash === 'lesson-threat') {
-            activateLesson('threat');
-        } else {
-            activateLesson('network');
+        const hash = window.location.hash.substring(1); // e.g., "lesson-3"
+        if (hash.startsWith('lesson-')) {
+            const lessonNum = parseInt(hash.split('-')[1]);
+            if (!isNaN(lessonNum) && lessonNum >= 1 && lessonNum <= totalLessons) {
+                activateLesson(lessonNum);
+                return;
+            }
         }
+        // default to lesson 1
+        activateLesson(1);
+        window.location.hash = 'lesson-1';
     }
 
     loadFromHash();
-
-    // optional: listen to hash changes
     window.addEventListener('hashchange', loadFromHash);
 </script>
-
-<!-- 
-    Additional description & text included per lesson. 
-    Every card contains detailed explanation, key concepts, 
-    and embedded YouTube links that match cybersecurity topics:
-    - Network monitoring with real fundamentals.
-    - SIEM framework + correlation.
-    - Wireshark practical analysis.
-    - Threat hunting / SIEM exercises.
-    Fully responsive, modern design inspired by the given image, 
-    but improved with interactive tabs, rich content, and direct YouTube integration.
--->
 </body>
 </html>
