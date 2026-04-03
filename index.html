@@ -1,94 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My YouTube Video Hub</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #94a3b8;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            width: 100%;
-        }
-        .video-card {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #334155;
-        }
-        .video-card:hover {
-            transform: translateY(-10px);
-            border-color: #38bdf8;
-        }
-        .iframe-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-        }
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .info {
-            padding: 20px;
-        }
-        .info h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #ef4444;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .btn:hover {
-            background-color: #dc2626;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Video Resource Hub</h1>
-    <p>A collection of useful tutorials and technical guides.</p>
-</header>
-
 <div class="video-grid">
+
     <div class="video-card">
-        <div class="iframe
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        </div>
+        <div class="info">
+            <h3>Video Title One</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">
+                Enter a brief description here about what this cybersecurity tutorial covers.
+            </p>
+            <a href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" class="btn">Watch on YouTube</a>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        </div>
+        <div class="info">
+            <h3>Video Title Two</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">
+                Add a description for your second video here to help your students understand the topic.
+            </p>
+            <a href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" class="btn">Watch on YouTube</a>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+        </div>
+        <div class="info">
+            <h3>Video Title Three</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">
+                Talk about the tools or techniques used in this specific lesson.
+            </p>
+            <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" class="btn">Watch on YouTube</a>
+        </div>
+    </div>
+
+</div>
