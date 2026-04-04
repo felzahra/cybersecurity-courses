@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>CyberDefend Academy · Visual Library (GIFs & Images)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fc; color: #1a2c3e; overflow-x: hidden; }
+        .app-wrapper { display: flex; min-height: 100vh; position: relative; }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .sidebar-overlay.active { opacity: 1; visibility: visible; }
+        .sidebar { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: #fff; border-right: 1px solid #e6edf4; display: flex; flex-direction: column; overflow-y: auto; z-index: 999; transition: left 0.3s cubic-bezier(0.2,0.9,0.4,1.1); box-shadow: 4px 0 24px rgba(0,0,0,0.1); }
+        .sidebar.open { left: 0; }
+        @media (min-width: 901px) { .sidebar { position: relative; left: 0 !important; width: 320px; flex-shrink: 0; box-shadow: none; z-index: auto; } .sidebar-overlay { display: none; } .menu-toggle-btn { display: none !important; } .app-wrapper { flex-direction: row; } }
+        .brand { padding: 24px 24px 16px; border-bottom: 1px solid #eef2f8; background: linear-gradient(135deg, #fff 0%, #fafcff 100%); }
+        .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .logo-icon { background: #02b3e4; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 12px rgba(2,179,228,0.2); }
+        .logo-text h1 { font-size: 1.3rem; font-weight: 800; color: #0b2b3b; }
+        .logo-text span { font-size: 0.65rem; color: #02b3e4; font-weight: 600; letter-spacing: 1px; }
+        .tagline { font-size: 0.7rem; color: #5c6f87; margin-top: 8px; border-left: 3px solid #02b3e4; padding-left: 10px; }
+        .progress-card { background: #f0f9fe; margin: 16px 20px; padding: 12px 16px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .progress-text { font-size: 0.7rem; font-weight: 600; }
+        .progress-number { font-size: 1.2rem; font-weight: 800; color: #02b3e4; }
+        .main-tabs { display: flex; border-bottom: 1px solid #eef2f8; background: #fff; padding: 0 12px; gap: 4px; margin-top: 4px; }
+        .tab-btn { flex: 1; background: transparent; border: none; padding: 12px 0; font-weight: 600; font-size: 0.8rem; color: #5f7f9c; cursor: pointer; border-radius: 12px 12px 0 0; transition: 0.2s; text-decoration: none; text-align: center; display: inline-block; }
+        .tab-btn.active { color: #02b3e4; border-bottom: 3px solid #02b3e4; background: #f9fbfe; }
+        .main-content { flex: 1; overflow-y: auto; padding: 24px 32px 48px 32px; background: #f5f7fc; min-height: 100vh; }
+        .menu-toggle-btn { background: #02b3e4; border: none; color: white; font-size: 1rem; font-weight: 600; padding: 10px 18px; border-radius: 40px; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; cursor: pointer; }
+        .media-gallery { max-width: 1400px; margin: 0 auto; }
+        .gallery-header { margin-bottom: 32px; text-align: center; }
+        .gallery-header h2 { font-size: 1.8rem; font-weight: 700; color: #0b2b3b; margin-bottom: 8px; }
+        .gallery-header p { color: #5c6f87; font-size: 0.9rem; }
+        .filter-bar { display: flex; justify-content: center; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+        .filter-btn { background: #eef2f8; border: none; padding: 8px 20px; border-radius: 40px; font-size: 0.8rem; font-weight: 500; color: #2c3f4f; cursor: pointer; transition: 0.2s; }
+        .filter-btn.active, .filter-btn:hover { background: #02b3e4; color: white; }
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+        .media-post { background: white; border-radius: 24px; overflow: hidden; border: 1px solid #eef2f8; transition: transform 0.2s, box-shadow 0.2s; }
+        .media-post:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+        .post-image { width: 100%; background: #f0f4f9; display: flex; align-items: center; justify-content: center; min-height: 220px; position: relative; }
+        .post-image img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 280px; }
+        .gif-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px); }
+        .post-content { padding: 20px; }
+        .post-category { display: inline-block; background: #e2f0f7; color: #02b3e4; font-size: 0.65rem; font-weight: 600; padding: 4px 10px; border-radius: 30px; margin-bottom: 12px; }
+        .post-content h3 { font-size: 1.2rem; font-weight: 700; color: #0b2b3b; margin-bottom: 8px; }
+        .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 0.7rem; color: #7f8c9a; }
+        .post-description { font-size: 0.85rem; line-height: 1.5; color: #2c3e50; margin-bottom: 16px; }
+        .post-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f4f9; padding-top: 12px; margin-top: 4px; }
+        .like-btn, .share-btn { background: transparent; border: none; font-size: 0.75rem; color: #5c6f87; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 30px; transition: 0.2s; }
+        .like-btn:hover { background: #fee2e2; color: #e74c3c; }
+        .share-btn:hover { background: #e2f0f7; color: #02b3e4; }
+        footer { text-align: center; margin-top: 48px; font-size: 0.75rem; color: #7f8c9a; padding-top: 24px; border-top: 1px solid #e2e8f0; }
+        @media (max-width: 900px) { .main-content { padding: 20px; } .posts-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 550px) { .gallery-header h2 { font-size: 1.4rem; } .menu-toggle-btn { font-size: 0.9rem; padding: 8px 16px; } }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #eef2f8; }
+        ::-webkit-scrollbar-thumb { background: #bdd3e4; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="app-wrapper">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="courseSidebar">
+        <div class="brand"><div class="logo"><div class="logo-icon">🎨</div><div class="logo-text"><h1>CyberDefend</h1><span>VISUAL LIBRARY</span></div></div><div class="tagline">Part of Accenture | GIFs · Diagrams · Infographics</div></div>
+        <div class="progress-card"><span class="progress-text">📈 Visual Resources</span><span class="progress-number">12+</span></div>
+        <div class="main-tabs"><a href="index.html" class="tab-btn">📘 COURSES</a><a href="projects.html" class="tab-btn">🚀 PROJECTS</a><a href="media.html" class="tab-btn active">🎨 MEDIA & GIFs</a></div>
+        <div style="margin-top: auto; padding: 20px; font-size: 0.65rem; color: #8ba0b2; border-top: 1px solid #edf2f7; text-align: center;">📸 Educational visuals & cybersecurity concepts</div>
+    </div>
+    <div class="main-content">
+        <button class="menu-toggle-btn" id="menuToggleBtn">☰ Menu</button>
+        <div class="media-gallery">
+            <div class="gallery-header"><h2>🎨 Cybersecurity Visual Library</h2><p>GIFs, diagrams, and infographics to simplify complex security concepts</p></div>
+            <div class="filter-bar"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="gif">🎬 GIFs</button><button class="filter-btn" data-filter="diagram">📐 Diagrams</button><button class="filter-btn" data-filter="infographic">📊 Infographics</button></div>
+            <div class="posts-grid" id="postsGrid">
+                <div class="media-post" data-category="diagram"><div class="post-image"><img src="https://via.placeholder.com/600x400/02b3e4/ffffff?text=Honeypot+Diagram" alt="Honeypot"></div><div class="post-content"><span class="post-category">📐 Diagram</span><h3>How Honeypots Work</h3><div class="post-meta">👩‍💻 Fatma Agery · Cybersecurity Mentor</div><div class="post-description">A honeypot is a decoy system designed to look vulnerable, attracting attackers while security teams collect intelligence.</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>24</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+                <div class="media-post" data-category="gif"><div class="post-image"><img src="https://media4.giphy.com/media/3o7abB06u9bNzA8LC8/giphy.gif" alt="SIEM Workflow"><span class="gif-badge">GIF</span></div><div class="post-content"><span class="post-category">🎬 GIF Animation</span><h3>SIEM Workflow: Logs → Correlation → Alerts</h3><div class="post-meta">🔄 Real-time security monitoring</div><div class="post-description">This animation shows how SIEM systems collect logs, normalize data, correlate events, and trigger alerts.</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>47</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+                <div class="media-post" data-category="infographic"><div class="post-image"><img src="https://www.cisa.gov/sites/default/files/styles/image_teaser/public/2021-09/Ransomware-Infographic-01-1200x675-1.png" alt="Ransomware"></div><div class="post-content"><span class="post-category">📊 Infographic</span><h3>Ransomware Attack Flow</h3><div class="post-meta">🛡️ CISA Framework</div><div class="post-description">Visual guide to ransomware attack lifecycle: compromise, encryption, ransom note, and recovery steps.</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>53</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+                <div class="media-post" data-category="gif"><div class="post-image"><img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" alt="Phishing"><span class="gif-badge">GIF</span></div><div class="post-content"><span class="post-category">🎬 GIF Animation</span><h3>How Phishing Attacks Work</h3><div class="post-meta">🎣 Social Engineering</div><div class="post-description">Phishing attacks trick users into clicking malicious links or entering credentials. Don't take the bait!</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>41</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+                <div class="media-post" data-category="infographic"><div class="post-image"><img src="https://www.first.org/cvss/v3-1/CVSS_v3.1_Score_Calculator.png" alt="CVSS"></div><div class="post-content"><span class="post-category">📊 Infographic</span><h3>CVSS v3.1 Score Calculator</h3><div class="post-meta">⚙️ Base · Temporal · Environmental</div><div class="post-description">Common Vulnerability Scoring System provides standardized vulnerability severity ratings from 0.0 to 10.0.</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>29</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+                <div class="media-post" data-category="gif"><div class="post-image"><img src="https://media.giphy.com/media/l0MYEqE3MWx02Txj2/giphy.gif" alt="OSI Model"><span class="gif-badge">GIF</span></div><div class="post-content"><span class="post-category">🎬 GIF Animation</span><h3>OSI Model: 7 Layers of Networking</h3><div class="post-meta">🌐 Physical → Application</div><div class="post-description">Animated visualization of data encapsulation as it travels down the OSI layers and back up.</div><div class="post-footer"><button class="like-btn" onclick="toggleLike(this)">❤️ <span>56</span></button><button class="share-btn" onclick="sharePost(this)">🔗 Share</button></div></div></div>
+            </div>
+            <footer>📸 CyberDefend Academy Visual Library — GIFs, Diagrams & Infographics for Cybersecurity Learning</footer>
+        </div>
+    </div>
+</div>
+<script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.media-post');
+    filterBtns.forEach(btn => { btn.addEventListener('click', () => { const filter = btn.getAttribute('data-filter'); filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); posts.forEach(post => { const category = post.getAttribute('data-category'); post.style.display = (filter === 'all' || category === filter) ? 'block' : 'none'; }); }); });
+    function toggleLike(btn) { const span = btn.querySelector('span'); let count = parseInt(span.innerText); if (btn.classList.contains('liked')) { btn.classList.remove('liked'); count--; } else { btn.classList.add('liked'); count++; btn.style.color = '#e74c3c'; setTimeout(() => btn.style.color = '', 200); } span.innerText = count; }
+    function sharePost(btn) { const post = btn.closest('.media-post'); const title = post.querySelector('h3').innerText; navigator.clipboard.writeText(`${title} - CyberDefend Academy`).then(() => alert('📋 Post link copied!')); }
+    window.toggleLike = toggleLike; window.sharePost = sharePost;
+    const menuToggleBtn = document.getElementById('menuToggleBtn'); const sidebar = document.getElementById('courseSidebar'); const overlay = document.getElementById('sidebarOverlay');
+    function closeSidebar() { if (window.innerWidth <= 900) { sidebar.classList.remove('open'); overlay.classList.remove('active'); } }
+    function openSidebar() { if (window.innerWidth <= 900) { sidebar.classList.add('open'); overlay.classList.add('active'); } }
+    if (menuToggleBtn) menuToggleBtn.addEventListener('click', openSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) { sidebar.classList.remove('open'); overlay.classList.remove('active'); } });
+</script>
+</body>
+</html>
