@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"> <!-- NEW: proper viewport -->
     <title>Cybersecurity Mastery · Defending & Securing Systems</title>
     <!-- Google Fonts & modern reset -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -11,6 +11,17 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* NEW: Global responsive image fix */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* NEW: Better iframe handling */
+        iframe {
+            max-width: 100%;
         }
 
         body {
@@ -247,18 +258,176 @@
             padding-top: 32px;
         }
 
-        @media (max-width: 780px) {
+        /* ========= NEW: COMPLETELY REWRITTEN RESPONSIVE STYLES ========= */
+        /* NEW: Tablet styles (max-width: 900px) */
+        @media (max-width: 900px) {
             .sidebar {
                 width: 280px;
             }
             .main-content {
-                padding: 20px;
+                padding: 24px 24px 40px 24px;
             }
             .card-header h2 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
-            .nav-item .label {
+        }
+
+        /* NEW: Mobile landscape & tablet portrait (max-width: 780px) */
+        @media (max-width: 780px) {
+            body {
+                flex-direction: column;
+                overflow: auto;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .sidebar {
+                width: 100%;
+                max-height: none;
+                border-right: none;
+                border-bottom: 1px solid #e6edf4;
+                overflow-y: visible;
+            }
+            
+            .nav-list {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 12px 16px;
+                gap: 8px;
+            }
+            
+            .nav-item {
+                flex: 0 0 auto;
+                width: calc(50% - 8px);
+                margin: 0;
+                padding: 10px 12px;
                 font-size: 0.75rem;
+            }
+            
+            .check-icon {
+                font-size: 0.9rem;
+                width: 20px;
+            }
+            
+            .main-content {
+                padding: 20px 16px 40px 16px;
+                overflow-y: visible;
+            }
+            
+            .card-header {
+                padding: 20px 20px 12px 20px;
+            }
+            
+            .card-header h2 {
+                font-size: 1.25rem;
+            }
+            
+            .card-header .sub {
+                font-size: 0.8rem;
+            }
+            
+            .video-container {
+                margin: 16px 16px 0 16px;
+            }
+            
+            .description-text {
+                padding: 20px 20px 24px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .info-grid {
+                padding: 14px 16px;
+            }
+            
+            .btn-youtube {
+                font-size: 0.75rem;
+                padding: 7px 16px;
+            }
+            
+            footer {
+                font-size: 0.7rem;
+                padding-top: 24px;
+                margin-top: 24px;
+            }
+        }
+
+        /* NEW: Mobile small screens (max-width: 550px) */
+        @media (max-width: 550px) {
+            .sidebar-header {
+                padding: 16px 20px;
+            }
+            
+            .sidebar-header h2 {
+                font-size: 0.75rem;
+            }
+            
+            .sidebar-header p {
+                font-size: 0.7rem;
+            }
+            
+            .course-badge {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+            }
+            
+            .nav-item {
+                width: 100%;
+                padding: 8px 12px;
+                font-size: 0.7rem;
+            }
+            
+            .main-content {
+                padding: 16px 12px 32px 12px;
+            }
+            
+            .card-header {
+                padding: 16px 16px 10px 16px;
+            }
+            
+            .card-header h2 {
+                font-size: 1.1rem;
+            }
+            
+            .lesson-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            
+            .video-container {
+                margin: 12px 12px 0 12px;
+            }
+            
+            .description-text {
+                padding: 16px 16px 20px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .info-grid {
+                padding: 12px 14px;
+            }
+            
+            .btn-youtube {
+                font-size: 0.7rem;
+                padding: 6px 14px;
+            }
+        }
+
+        /* NEW: Extra small devices (max-width: 380px) */
+        @media (max-width: 380px) {
+            .card-header h2 {
+                font-size: 1rem;
+            }
+            
+            .description-text {
+                font-size: 0.8rem;
+            }
+            
+            .check-icon {
+                display: none;
+            }
+            
+            .nav-item .label {
+                text-align: center;
             }
         }
 
@@ -396,7 +565,7 @@
         </div>
     </div>
 
-    <!-- LESSON 4: Security Architecture Map (comprehensive) -->
+    <!-- LESSON 4: Security Architecture Map -->
     <div id="lesson-4" class="lesson-card" style="display: none;">
         <div class="card-header">
             <span class="lesson-badge">📺 VIDEO 4 / 10</span>
@@ -596,12 +765,16 @@
                 const id = parseInt(lessonNum);
                 activateLesson(id);
                 window.location.hash = `lesson-${id}`;
+                // NEW: Smooth scroll to top on mobile when clicking lesson
+                if (window.innerWidth <= 780) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         });
     });
 
     function loadFromHash() {
-        const hash = window.location.hash.substring(1); // e.g., "lesson-3"
+        const hash = window.location.hash.substring(1);
         if (hash.startsWith('lesson-')) {
             const lessonNum = parseInt(hash.split('-')[1]);
             if (!isNaN(lessonNum) && lessonNum >= 1 && lessonNum <= totalLessons) {
