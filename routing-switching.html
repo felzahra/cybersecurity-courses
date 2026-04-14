@@ -604,46 +604,7 @@
 </div>
 
 <script>
-    // Sidebar toggle
-    const menuToggleBtn = document.getElementById('menuToggleBtn');
-    const sidebar = document.getElementById('courseSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-
-    function closeSidebar() {
-        if (window.innerWidth <= 900) {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-        }
-    }
-
-    function openSidebar() {
-        if (window.innerWidth <= 900) {
-            sidebar.classList.add('open');
-            overlay.classList.add('active');
-        }
-    }
-
-    if (menuToggleBtn) {
-        menuToggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openSidebar();
-        });
-    }
-
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            closeSidebar();
-        });
-    }
-
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 900) {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-        }
-    });
-
-    // Tab functionality for lesson cards
+    // Initialize tab listeners for all lesson cards
     function initAllTabs() {
         document.querySelectorAll('.lesson-card').forEach(card => {
             const btns = card.querySelectorAll('.tab-btn-lesson');
@@ -663,45 +624,56 @@
     }
     initAllTabs();
 
-    // Navigation
+    // Function to stop all playing videos
+    function stopAllVideos() {
+        document.querySelectorAll('iframe').forEach(iframe => {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        });
+    }
+
+    // Navigation between lessons
     const navItems = document.querySelectorAll('.nav-item');
-    const totalLessons = 24;
+    const totalLessons = 15;
+    
     function activateLesson(id) {
+        // Stop all playing videos before switching lessons
+        stopAllVideos();
+        
+        // Hide all lessons
         for (let i = 1; i <= totalLessons; i++) {
             const el = document.getElementById(`lesson-${i}`);
             if (el) el.style.display = 'none';
         }
+        
+        // Show selected lesson
         const target = document.getElementById(`lesson-${id}`);
         if (target) target.style.display = 'block';
+        
+        // Update active nav item
         navItems.forEach(item => item.classList.remove('active'));
-        navItems.forEach(item => {
-            if (parseInt(item.getAttribute('data-lesson')) === id) {
-                item.style.background = '#e9f4fa';
-                item.style.fontWeight = '600';
-                item.style.borderLeft = '3px solid #02b3e4';
-            } else {
-                item.style.background = '';
-                item.style.fontWeight = '';
-                item.style.borderLeft = '';
-            }
-        });
-        closeSidebar();
+        const activeItem = document.querySelector(`.nav-item[data-lesson="${id}"]`);
+        if (activeItem) activeItem.classList.add('active');
     }
-
+    
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const id = parseInt(item.getAttribute('data-lesson'));
-            if (!isNaN(id)) { activateLesson(id); window.location.hash = `lesson-${id}`; }
+            if (!isNaN(id)) { 
+                activateLesson(id); 
+                window.location.hash = `lesson-${id}`; 
+            }
         });
     });
-
+    
     const hash = window.location.hash.substring(1);
     if (hash.startsWith('lesson-')) {
         const num = parseInt(hash.split('-')[1]);
         if (num >= 1 && num <= totalLessons) activateLesson(num);
         else activateLesson(1);
     } else activateLesson(1);
-
+    
     window.addEventListener('hashchange', () => {
         const h = window.location.hash.substring(1);
         if (h.startsWith('lesson-')) {
