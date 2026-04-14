@@ -137,10 +137,12 @@
 </div>
 
 <script>
+    // Initialize tab listeners for all lesson cards
     function initAllTabs() {
         document.querySelectorAll('.lesson-card').forEach(card => {
             const btns = card.querySelectorAll('.tab-btn-lesson');
             btns.forEach(btn => {
+                btn.removeEventListener('click', (e) => {});
                 btn.addEventListener('click', (e) => {
                     const parentCard = btn.closest('.lesson-card');
                     const targetTabId = btn.getAttribute('data-tab');
@@ -154,29 +156,64 @@
         });
     }
     initAllTabs();
-    
+
+    // Function to stop all playing videos
+    function stopAllVideos() {
+        document.querySelectorAll('iframe').forEach(iframe => {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        });
+    }
+
+    // Navigation between lessons
     const navItems = document.querySelectorAll('.nav-item');
+    const totalLessons = 15;
+    
     function activateLesson(id) {
-        for (let i = 1; i <= 24; i++) { const el = document.getElementById(`lesson-${i}`); if (el) el.style.display = 'none'; }
-        const target = document.getElementById(`lesson-${id}`); if (target) target.style.display = 'block';
+        // Stop all playing videos before switching lessons
+        stopAllVideos();
+        
+        // Hide all lessons
+        for (let i = 1; i <= totalLessons; i++) {
+            const el = document.getElementById(`lesson-${i}`);
+            if (el) el.style.display = 'none';
+        }
+        
+        // Show selected lesson
+        const target = document.getElementById(`lesson-${id}`);
+        if (target) target.style.display = 'block';
+        
+        // Update active nav item
         navItems.forEach(item => item.classList.remove('active'));
         const activeItem = document.querySelector(`.nav-item[data-lesson="${id}"]`);
         if (activeItem) activeItem.classList.add('active');
     }
-    navItems.forEach(item => { item.addEventListener('click', () => { const id = parseInt(item.getAttribute('data-lesson')); activateLesson(id); window.location.hash = `lesson-${id}`; if (window.innerWidth <= 900) closeSidebar(); }); });
     
-    const menuToggleBtn = document.getElementById('menuToggleBtn');
-    const sidebar = document.getElementById('courseSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    function closeSidebar() { if (window.innerWidth <= 900) { sidebar.classList.remove('open'); overlay.classList.remove('active'); } }
-    function openSidebar() { if (window.innerWidth <= 900) { sidebar.classList.add('open'); overlay.classList.add('active'); } }
-    if (menuToggleBtn) menuToggleBtn.addEventListener('click', openSidebar);
-    if (overlay) overlay.addEventListener('click', closeSidebar);
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) { sidebar.classList.remove('open'); overlay.classList.remove('active'); } });
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = parseInt(item.getAttribute('data-lesson'));
+            if (!isNaN(id)) { 
+                activateLesson(id); 
+                window.location.hash = `lesson-${id}`; 
+            }
+        });
+    });
     
     const hash = window.location.hash.substring(1);
-    if (hash.startsWith('lesson-')) { const num = parseInt(hash.split('-')[1]); if (num >= 1 && num <= 24) activateLesson(num); } else activateLesson(1);
-    window.addEventListener('hashchange', () => { const h = window.location.hash.substring(1); if (h.startsWith('lesson-')) { const n = parseInt(h.split('-')[1]); if (n >= 1 && n <= 24) activateLesson(n); } });
+    if (hash.startsWith('lesson-')) {
+        const num = parseInt(hash.split('-')[1]);
+        if (num >= 1 && num <= totalLessons) activateLesson(num);
+        else activateLesson(1);
+    } else activateLesson(1);
+    
+    window.addEventListener('hashchange', () => {
+        const h = window.location.hash.substring(1);
+        if (h.startsWith('lesson-')) {
+            const n = parseInt(h.split('-')[1]);
+            if (n >= 1 && n <= totalLessons) activateLesson(n);
+        }
+    });
 </script>
 </body>
 </html>
