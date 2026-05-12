@@ -28,7 +28,6 @@
         .card-header h2 { font-size: 1.6rem; font-weight: 700; color: #0b2b3b; margin: 8px 0 8px 0; }
         .sub { color: #5c6f87; margin-top: 8px; font-size: 0.9rem; }
         
-        /* Two Tabs Style */
         .lesson-tabs {
             display: flex;
             border-bottom: 2px solid #eef2f8;
@@ -67,7 +66,6 @@
         .btn-youtube { display: inline-flex; align-items: center; gap: 8px; background: #ff0000; color: white; padding: 8px 18px; border-radius: 40px; font-weight: 600; font-size: 0.8rem; text-decoration: none; margin-top: 12px; transition: 0.2s; }
         .btn-youtube:hover { background: #cc0000; transform: scale(0.98); }
         
-        /* Downloads Section */
         .downloads-list { display: flex; flex-direction: column; gap: 12px; }
         .download-item { background: #f9fbfe; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border: 1px solid #eef2f8; }
         .download-info h4 { font-size: 1rem; margin-bottom: 4px; color: #0b2b3b; }
@@ -97,56 +95,171 @@
     <a href="index.html" class="back-link">← Back to Dashboard</a>
     <div class="nav-list">
         <div style="padding: 8px 20px 4px; font-size:0.7rem; color:#02b3e4; font-weight:600;">🔐 CYBERSECURITY</div>
-        <div class="nav-item active" data-lesson="1"><span class="check-icon">📡</span> 1. System Event Logs & SIEM</div>
-        <div class="nav-item" data-lesson="2"><span class="check-icon">🔐</span> 2. Encryption, Access Controls & AAA</div>
-        <div class="nav-item" data-lesson="3"><span class="check-icon">🔎</span> 3. Nessus & OpenVAS Scanners</div>
-        <div class="nav-item" data-lesson="4"><span class="check-icon">🛡️</span> 4. Network Security Monitoring</div>
-        <div class="nav-item" data-lesson="5"><span class="check-icon">⚙️</span> 5. CVE, CWE, OWASP, CVSS & MITRE</div>
-        <div class="nav-item" data-lesson="6"><span class="check-icon">🎣</span> 6. Attack Vectors & Gophish</div>
-        <div class="nav-item" data-lesson="7"><span class="check-icon">🧪</span> 7. Gophish Phishing LAB</div>
-        <div class="nav-item" data-lesson="8"><span class="check-icon">📊</span> 8. SIEM Framework & Correlation</div>
-        <div class="nav-item" data-lesson="9"><span class="check-icon">🔎</span> 9. Threat Hunting with SIEM</div>
-        <div class="nav-item" data-lesson="10"><span class="check-icon">⚠️</span> 10. Advanced Network Attacks</div>
-		<div class="nav-item" data-lesson="11"><span class="check-icon">🔐</span> 11. Authentication</div>
-		<div class="nav-item" data-lesson="12"><span class="check-icon">📋</span> 12. Authorization</div>
-		<div class="nav-item" data-lesson="13"><span class="check-icon">🛡️</span> 13. DAC, MAC & AppArmor</div>
-		<div class="nav-item" data-lesson="14"><span class="check-icon">📦</span> 14. Isolation</div>
-		<div class="nav-item" data-lesson="15"><span class="check-icon">⚠️</span> 15. Buffer Overflow</div>
-		<div class="nav-item" data-lesson="16"><span class="check-icon">🎬</span> 16. clamav yara new signature detection</div>
-        <div class="nav-item" data-lesson="17"><span class="check-icon">☁️</span> 17. File integrity</div>
-        <div class="nav-item" data-lesson="18"><span class="check-icon">🎬</span> 18. logs</div>
-        <div class="nav-item" data-lesson="19"><span class="check-icon">🦠</span> 19. Infrastructure Security Part 1 </div>
-		<div class="nav-item" data-lesson="20"><span class="check-icon">📁</span> 20. Mitre Common Vulnerabilities & Exposures</div>
-        <div class="nav-item" data-lesson="21"><span class="check-icon">📊</span> 21. CIS BENCHMARKS</div>
-        <div class="nav-item" data-lesson="22"><span class="check-icon">🛡️</span> 22. Flow of Assessment</div>
-        <div class="nav-item" data-lesson="23"><span class="check-icon">📡</span> 23. firewalls and acls</div>
-        <div class="nav-item" data-lesson="24"><span class="check-icon">🏗️</span> 24. owasp & web application firewall WAF</div>
-        <div class="nav-item" data-lesson="25"><span class="check-icon">🦠</span> 25. Active Directory and Domain Isolation</div>
-        <div class="nav-item" data-lesson="26"><span class="check-icon">🏗️</span> 26. Remote Access Management</div>
-        <div class="nav-item" data-lesson="27"><span class="check-icon">☁️</span> 27. IPv6</div>
-        <div class="nav-item" data-lesson="28"><span class="check-icon">🛡️</span> 28. Network Monitoring</div>
+        <div class="nav-item active" data-lesson="1"><span class="check-icon">🌐</span> 1. Networking Basics (IP, MAC, OSI, Devices, Cables)</div>
+        <div class="nav-item" data-lesson="2"><span class="check-icon">🔢</span> 2. IP Addressing</div>
+        <div class="nav-item" data-lesson="3"><span class="check-icon">⚠️</span> 3. CIA Triad, Malware, Threat Actors</div>
+        <div class="nav-item" data-lesson="4"><span class="check-icon">🛡️</span> 4. Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM</div>
+        <div class="nav-item" data-lesson="5"><span class="check-icon">🛡️</span> 5. Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM (Repeat)</div>
+        <div class="nav-item" data-lesson="6"><span class="check-icon">📡</span> 6. System Event Logs & SIEM</div>
+        <div class="nav-item" data-lesson="7"><span class="check-icon">🔐</span> 7. Encryption, Access Controls & AAA</div>
+        <div class="nav-item" data-lesson="8"><span class="check-icon">🔎</span> 8. Nessus & OpenVAS Scanners</div>
+        <div class="nav-item" data-lesson="9"><span class="check-icon">🛡️</span> 9. Network Security Monitoring</div>
+        <div class="nav-item" data-lesson="10"><span class="check-icon">⚙️</span> 10. CVE, CWE, OWASP, CVSS & MITRE</div>
+        <div class="nav-item" data-lesson="11"><span class="check-icon">🎣</span> 11. Attack Vectors & Gophish</div>
+        <div class="nav-item" data-lesson="12"><span class="check-icon">🧪</span> 12. Gophish Phishing LAB</div>
+        <div class="nav-item" data-lesson="13"><span class="check-icon">📊</span> 13. SIEM Framework & Correlation</div>
+        <div class="nav-item" data-lesson="14"><span class="check-icon">🔎</span> 14. Threat Hunting with SIEM</div>
+        <div class="nav-item" data-lesson="15"><span class="check-icon">⚠️</span> 15. Advanced Network Attacks</div>
+		<div class="nav-item" data-lesson="16"><span class="check-icon">🔐</span> 16. Authentication</div>
+		<div class="nav-item" data-lesson="17"><span class="check-icon">📋</span> 17. Authorization</div>
+		<div class="nav-item" data-lesson="18"><span class="check-icon">🛡️</span> 18. DAC, MAC & AppArmor</div>
+		<div class="nav-item" data-lesson="19"><span class="check-icon">📦</span> 19. Isolation</div>
+		<div class="nav-item" data-lesson="20"><span class="check-icon">⚠️</span> 20. Buffer Overflow</div>
+		<div class="nav-item" data-lesson="21"><span class="check-icon">🎬</span> 21. clamav yara new signature detection</div>
+        <div class="nav-item" data-lesson="22"><span class="check-icon">☁️</span> 22. File integrity</div>
+        <div class="nav-item" data-lesson="23"><span class="check-icon">🎬</span> 23. logs</div>
+        <div class="nav-item" data-lesson="24"><span class="check-icon">🦠</span> 24. Infrastructure Security Part 1</div>
+		<div class="nav-item" data-lesson="25"><span class="check-icon">📁</span> 25. Mitre Common Vulnerabilities & Exposures</div>
+        <div class="nav-item" data-lesson="26"><span class="check-icon">📊</span> 26. CIS BENCHMARKS</div>
+        <div class="nav-item" data-lesson="27"><span class="check-icon">🛡️</span> 27. Flow of Assessment</div>
+        <div class="nav-item" data-lesson="28"><span class="check-icon">📡</span> 28. firewalls and acls</div>
+        <div class="nav-item" data-lesson="29"><span class="check-icon">🏗️</span> 29. owasp & web application firewall WAF</div>
+        <div class="nav-item" data-lesson="30"><span class="check-icon">🦠</span> 30. Active Directory and Domain Isolation</div>
+        <div class="nav-item" data-lesson="31"><span class="check-icon">🏗️</span> 31. Remote Access Management</div>
+        <div class="nav-item" data-lesson="32"><span class="check-icon">☁️</span> 32. IPv6</div>
+        <div class="nav-item" data-lesson="33"><span class="check-icon">🛡️</span> 33. Network Monitoring</div>
     </div>
     <div style="margin-top: auto; padding: 18px; font-size: 0.6rem; color: #8ba0b2; border-top: 1px solid #edf2f7; text-align: center;">
-        ⚡ 19 cybersecurity modules with downloads
+        ⚡ 33 cybersecurity modules with downloads
     </div>
 </div>
 <div class="main-content">
-    <!-- LESSON 1: System Event Logs & SIEM -->
+    <!-- LESSON 1: Networking Basics -->
     <div id="lesson-1" class="lesson-card">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 1 / 28</span>
-            <h2>System Event Logs & SIEM Fundamentals</h2>
-            <div class="sub">Event management · Log aggregation · Security monitoring</div>
+            <span class="lesson-badge">📺 VIDEO 1 / 33</span>
+            <h2>Networking Basics (IP, MAC, OSI, Devices, Cables)</h2>
+            <div class="sub">Networking Basics (IP, MAC, OSI, Devices, Cables)</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video1">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download1">📥 Downloads</button>
         </div>
         <div id="video1" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/jA-rEBBCnyU?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>IP addresses, MAC addresses, OSI model, networking devices (routers, switches), and cable types.</p><a href="https://www.youtube.com/watch?v=jA-rEBBCnyU" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download1" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>📘 Networking Basics Guide</h4><p>PDF with OSI model, IP/MAC, devices explained</p></div><a href="#" class="btn-download" onclick="alert('Networking Basics downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 2: IP Addressing -->
+    <div id="lesson-2" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 2 / 33</span>
+            <h2>IP Addressing</h2>
+            <div class="sub">IP Addressing</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video2">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download2">📥 Downloads</button>
+        </div>
+        <div id="video2" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/KKENTRpvoIc?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>IP addressing fundamentals, IPv4 vs IPv6, subnetting, and address classes.</p><a href="https://www.youtube.com/watch?v=KKENTRpvoIc" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download2" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>📘 IP Addressing Guide</h4><p>Subnetting cheat sheet and examples</p></div><a href="#" class="btn-download" onclick="alert('IP Addressing guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 3: CIA Triad, Malware, Threat Actors -->
+    <div id="lesson-3" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 3 / 33</span>
+            <h2>CIA Triad, Malware, Threat Actors</h2>
+            <div class="sub">CIA Triad, Malware, Threat Actors</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video3">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download3">📥 Downloads</button>
+        </div>
+        <div id="video3" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/C7Prb5MUQWA?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Confidentiality, Integrity, Availability (CIA), malware types (virus, worm, ransomware), and threat actors.</p><a href="https://www.youtube.com/watch?v=C7Prb5MUQWA" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download3" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>📘 Cybersecurity Fundamentals Guide</h4><p>CIA triad, malware categories, threat actors</p></div><a href="#" class="btn-download" onclick="alert('Cybersecurity guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 4: Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM -->
+    <div id="lesson-4" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 4 / 33</span>
+            <h2>Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM</h2>
+            <div class="sub">Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video4">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download4">📥 Downloads</button>
+        </div>
+        <div id="video4" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/ETNEmND0YKg?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Firewall types (packet filtering, stateful, next-gen), proxy servers, IPS/IDS, WAF, email security, and MITM attacks.</p><a href="https://www.youtube.com/watch?v=ETNEmND0YKg" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download4" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>🛡️ Network Security Guide</h4><p>Firewalls, IDS/IPS, WAF explained</p></div><a href="#" class="btn-download" onclick="alert('Network Security guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 5: Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM (Duplicate) -->
+    <div id="lesson-5" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 5 / 33</span>
+            <h2>Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM (Repeat)</h2>
+            <div class="sub">Firewall Types, Proxy, IPS, IDS, WAF, Email Security, MITM (Repeat)</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video5">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download5">📥 Downloads</button>
+        </div>
+        <div id="video5" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/ETNEmND0YKg?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Firewall types (packet filtering, stateful, next-gen), proxy servers, IPS/IDS, WAF, email security, and MITM attacks. (Repeat session)</p><a href="https://www.youtube.com/watch?v=ETNEmND0YKg" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download5" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>🛡️ Network Security Guide (Repeat)</h4><p>Firewalls, IDS/IPS, WAF explained</p></div><a href="#" class="btn-download" onclick="alert('Network Security guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 6: System Event Logs & SIEM -->
+    <div id="lesson-6" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 6 / 33</span>
+            <h2>System Event Logs & SIEM Fundamentals</h2>
+            <div class="sub">Event management · Log aggregation · Security monitoring</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video6">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download6">📥 Downloads</button>
+        </div>
+        <div id="video6" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/PwEFbNGI4zA?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Windows Event Logs, Syslog, Event IDs 4624/4625, log forwarding, and SIEM basics.</p><div class="info-grid"><p>✅ Key concepts: Event IDs, log forwarding, Windows Event Collector, Syslog-ng.</p></div><a href="https://www.youtube.com/watch?v=PwEFbNGI4zA" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download1" class="tab-content">
+        <div id="download6" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>📘 SIEM Implementation Guide</h4><p>PDF with SIEM architecture and deployment steps</p></div><a href="#" class="btn-download" onclick="alert('SIEM Guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📝 Windows Event Log Cheat Sheet</h4><p>Important Event IDs for security monitoring</p></div><a href="#" class="btn-download" onclick="alert('Event Log Cheat Sheet downloaded'); return false;">Download</a></div>
@@ -154,22 +267,22 @@
         </div>
     </div>
 
-    <!-- LESSON 2: Encryption, Access Controls & AAA -->
-    <div id="lesson-2" class="lesson-card" style="display:none;">
+    <!-- LESSON 7: Encryption, Access Controls & AAA -->
+    <div id="lesson-7" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 2 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 7 / 33</span>
             <h2>Encryption, Access Controls & AAA</h2>
             <div class="sub">Authentication · Authorization · Accounting</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video2">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download2">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video7">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download7">📥 Downloads</button>
         </div>
-        <div id="video2" class="tab-content active">
+        <div id="video7" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/oxh6lHVJOek?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Symmetric/asymmetric encryption, RADIUS, TACACS+, AAA model, and MFA.</p><div class="info-grid"><p>🔐 Core topics: AES, RSA, 802.1X, and accounting logs.</p></div><a href="https://www.youtube.com/watch?v=oxh6lHVJOek" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download2" class="tab-content">
+        <div id="download7" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🔐 Encryption Algorithms Comparison</h4><p>Symmetric vs Asymmetric, use cases</p></div><a href="#" class="btn-download" onclick="alert('Encryption guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📋 AAA Configuration Guide</h4><p>RADIUS/TACACS+ setup examples</p></div><a href="#" class="btn-download" onclick="alert('AAA guide downloaded'); return false;">Download</a></div>
@@ -177,22 +290,22 @@
         </div>
     </div>
 
-    <!-- LESSON 3: Nessus & OpenVAS Scanners -->
-    <div id="lesson-3" class="lesson-card" style="display:none;">
+    <!-- LESSON 8: Nessus & OpenVAS Scanners -->
+    <div id="lesson-8" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 3 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 8 / 33</span>
             <h2>Nessus & OpenVAS Vulnerability Scanners</h2>
             <div class="sub">Vulnerability assessment · CVE scanning · Remediation</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video3">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download3">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video8">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download8">📥 Downloads</button>
         </div>
-        <div id="video3" class="tab-content active">
+        <div id="video8" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/7g-dJAHp_r4?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Hands-on with Nessus Essentials and OpenVAS. Identify missing patches, misconfigurations, and prioritize CVSS scores.</p><a href="https://www.youtube.com/watch?v=7g-dJAHp_r4" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download3" class="tab-content">
+        <div id="download8" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🔎 Nessus Installation Guide</h4><p>Step-by-step setup for Nessus Essentials</p></div><a href="#" class="btn-download" onclick="alert('Nessus guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📊 Vulnerability Scan Report Template</h4><p>Excel/PDF template for findings</p></div><a href="#" class="btn-download" onclick="alert('Report template downloaded'); return false;">Download</a></div>
@@ -200,22 +313,22 @@
         </div>
     </div>
 
-    <!-- LESSON 4: Network Security Monitoring -->
-    <div id="lesson-4" class="lesson-card" style="display:none;">
+    <!-- LESSON 9: Network Security Monitoring -->
+    <div id="lesson-9" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 4 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 9 / 33</span>
             <h2>Network Security Monitoring Tools</h2>
             <div class="sub">IDS/IPS · Zeek · Wireshark · Attack patterns</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video4">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download4">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video9">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download9">📥 Downloads</button>
         </div>
-        <div id="video4" class="tab-content active">
+        <div id="video9" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/4ygd5MTv07I?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Zeek, Snort, Suricata, detect port scans, DDoS, and ARP spoofing.</p><a href="https://www.youtube.com/watch?v=4ygd5MTv07I" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download4" class="tab-content">
+        <div id="download9" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🛡️ Snort/Suricata Rules Guide</h4><p>Custom rule writing examples</p></div><a href="#" class="btn-download" onclick="alert('IDS rules downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📡 Zeek Installation & Configuration</h4><p>Setup guide for Zeek NSM</p></div><a href="#" class="btn-download" onclick="alert('Zeek guide downloaded'); return false;">Download</a></div>
@@ -223,22 +336,22 @@
         </div>
     </div>
 
-    <!-- LESSON 5: CVE, CWE, OWASP, CVSS & MITRE -->
-    <div id="lesson-5" class="lesson-card" style="display:none;">
+    <!-- LESSON 10: CVE, CWE, OWASP, CVSS & MITRE -->
+    <div id="lesson-10" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 5 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 10 / 33</span>
             <h2>CVE, CWE, OWASP, CVSS & MITRE ATT&CK</h2>
             <div class="sub">Threat frameworks · Vulnerability scoring · Adversary tactics</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video5">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download5">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video10">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download10">📥 Downloads</button>
         </div>
-        <div id="video5" class="tab-content active">
+        <div id="video10" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/1IeGiDiL7KA?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Master essential frameworks: CVE, CWE, OWASP Top 10, CVSS v3, CAPEC, and MITRE ATT&CK matrix.</p><a href="https://www.youtube.com/watch?v=1IeGiDiL7KA" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download5" class="tab-content">
+        <div id="download10" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>📋 OWASP Top 10 2025 Reference</h4><p>Detailed list with mitigation strategies</p></div><a href="#" class="btn-download" onclick="alert('OWASP Top 10 downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>🗺️ MITRE ATT&CK Matrix Poster</h4><p>Visual reference of tactics and techniques</p></div><a href="#" class="btn-download" onclick="alert('MITRE ATT&CK matrix downloaded'); return false;">Download</a></div>
@@ -247,22 +360,22 @@
         </div>
     </div>
 
-    <!-- LESSON 6: Attack Vectors & Gophish -->
-    <div id="lesson-6" class="lesson-card" style="display:none;">
+    <!-- LESSON 11: Attack Vectors & Gophish -->
+    <div id="lesson-11" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 6 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 11 / 33</span>
             <h2>Network Attack Vectors & Gophish</h2>
             <div class="sub">Social engineering · Email attacks · Campaign simulation</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video6">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download6">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video11">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download11">📥 Downloads</button>
         </div>
-        <div id="video6" class="tab-content active">
+        <div id="video11" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/s5SGVj9igrE?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Phishing, BEC, credential harvesting, and Gophish setup for simulated campaigns.</p><a href="https://www.youtube.com/watch?v=s5SGVj9igrE" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download6" class="tab-content">
+        <div id="download11" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🎣 Gophish Installation Guide</h4><p>Setup and configuration steps</p></div><a href="#" class="btn-download" onclick="alert('Gophish guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📧 Phishing Email Templates</h4><p>Example templates for testing</p></div><a href="#" class="btn-download" onclick="alert('Email templates downloaded'); return false;">Download</a></div>
@@ -270,22 +383,22 @@
         </div>
     </div>
 
-    <!-- LESSON 7: Gophish Phishing LAB -->
-    <div id="lesson-7" class="lesson-card" style="display:none;">
+    <!-- LESSON 12: Gophish Phishing LAB -->
+    <div id="lesson-12" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 7 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 12 / 33</span>
             <h2>Gophish Phishing LAB (Hands-on)</h2>
             <div class="sub">Advanced campaign setup · Reporting · Remediation</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video7">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download7">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video12">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download12">📥 Downloads</button>
         </div>
-        <div id="video7" class="tab-content active">
+        <div id="video12" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/y3UKNjBXBss?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Advanced Gophish: custom SMTP, credential tracking, awareness metrics, and reporting.</p><a href="https://www.youtube.com/watch?v=y3UKNjBXBss" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download7" class="tab-content">
+        <div id="download12" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>📊 Phishing Campaign Report Template</h4><p>Excel dashboard for metrics</p></div><a href="#" class="btn-download" onclick="alert('Campaign report template downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📁 Sample Landing Pages</h4><p>HTML templates for phishing simulations</p></div><a href="#" class="btn-download" onclick="alert('Landing pages downloaded'); return false;">Download</a></div>
@@ -293,22 +406,22 @@
         </div>
     </div>
 
-    <!-- LESSON 8: SIEM Framework & Correlation -->
-    <div id="lesson-8" class="lesson-card" style="display:none;">
+    <!-- LESSON 13: SIEM Framework & Correlation -->
+    <div id="lesson-13" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 8 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 13 / 33</span>
             <h2>SIEM Framework & Correlation</h2>
             <div class="sub">Log management · Rule engine · Dashboards</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video8">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download8">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video13">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download13">📥 Downloads</button>
         </div>
-        <div id="video8" class="tab-content active">
+        <div id="video13" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/MTj_KE_UkEg?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>SIEM architecture, data ingestion, normalization, correlation rules, and alert tuning.</p><a href="https://www.youtube.com/watch?v=MTj_KE_UkEg" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download8" class="tab-content">
+        <div id="download13" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>📊 SIEM Correlation Rule Examples</h4><p>Sample rules for Splunk/ELK</p></div><a href="#" class="btn-download" onclick="alert('Correlation rules downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📋 Log Source Integration Guide</h4><p>How to onboard various log sources</p></div><a href="#" class="btn-download" onclick="alert('Log integration guide downloaded'); return false;">Download</a></div>
@@ -316,22 +429,22 @@
         </div>
     </div>
 
-    <!-- LESSON 9: Threat Hunting with SIEM -->
-    <div id="lesson-9" class="lesson-card" style="display:none;">
+    <!-- LESSON 14: Threat Hunting with SIEM -->
+    <div id="lesson-14" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 9 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 14 / 33</span>
             <h2>Threat Hunting with SIEM</h2>
             <div class="sub">Proactive detection · KQL/SPL · Adversary emulation</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video9">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download9">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video14">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button>
         </div>
-        <div id="video9" class="tab-content active">
+        <div id="video14" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/e9ZV0sWBfbg?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Proactive hunting, KQL/SPL queries, persistence detection, and adversary emulation.</p><a href="https://www.youtube.com/watch?v=e9ZV0sWBfbg" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download9" class="tab-content">
+        <div id="download14" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🔍 Threat Hunting Queries (KQL/SPL)</h4><p>Ready-to-use hunting queries</p></div><a href="#" class="btn-download" onclick="alert('Hunting queries downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📁 Adversary Emulation Plan</h4><p>MITRE-based testing scenarios</p></div><a href="#" class="btn-download" onclick="alert('Emulation plan downloaded'); return false;">Download</a></div>
@@ -339,22 +452,22 @@
         </div>
     </div>
 
-    <!-- LESSON 10: Advanced Network Attack Methods -->
-    <div id="lesson-10" class="lesson-card" style="display:none;">
+    <!-- LESSON 15: Advanced Network Attack Methods -->
+    <div id="lesson-15" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 10 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 15 / 33</span>
             <h2>Advanced Network Attack Methods</h2>
             <div class="sub">MITRE ATT&CK · Covert channels · APT techniques</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video10">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download10">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button>
         </div>
-        <div id="video10" class="tab-content active">
+        <div id="video15" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/ZXPjpVA2kPA?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>APT techniques: DNS tunneling, LOLBins, C2 evasion, and zero-trust defenses.</p><div class="info-grid"><p>🛡️ Defenses: Zero-trust, micro-segmentation, encrypted DNS.</p></div><a href="https://www.youtube.com/watch?v=ZXPjpVA2kPA" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download10" class="tab-content">
+        <div id="download15" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>⚠️ APT Techniques Reference</h4><p>Common TTPs used by advanced adversaries</p></div><a href="#" class="btn-download" onclick="alert('APT techniques downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>🛡️ Zero Trust Architecture Guide</h4><p>Implementation framework and best practices</p></div><a href="#" class="btn-download" onclick="alert('Zero trust guide downloaded'); return false;">Download</a></div>
@@ -362,110 +475,114 @@
         </div>
     </div>
 	
-	    <!-- LESSON 11: Authentication -->
-    <div id="lesson-11" class="lesson-card" style="display:none;">
+	<!-- LESSON 16: Authentication -->
+    <div id="lesson-16" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 11 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 16 / 33</span>
             <h2>Authentication</h2>
             <div class="sub">Identity verification · Password security · MFA</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video11">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download11">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video16">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download16">📥 Downloads</button>
         </div>
-        <div id="video11" class="tab-content active">
+        <div id="video16" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/l_egPLxIcws?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Authentication methods, password policies, multi-factor authentication (MFA), and best practices.</p><a href="https://www.youtube.com/watch?v=l_egPLxIcws" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download11" class="tab-content">
+        <div id="download16" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🔐 Authentication Methods Guide</h4><p>Password, biometric, token-based authentication</p></div><a href="#" class="btn-download" onclick="alert('Authentication guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📋 MFA Implementation Checklist</h4><p>Step-by-step MFA deployment</p></div><a href="#" class="btn-download" onclick="alert('MFA checklist downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-	    <!-- LESSON 12: Authorization -->
-    <div id="lesson-12" class="lesson-card" style="display:none;">
+	
+	<!-- LESSON 17: Authorization -->
+    <div id="lesson-17" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 12 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 17 / 33</span>
             <h2>Authorization</h2>
             <div class="sub">Access control · Permissions · RBAC</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video12">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download12">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video17">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download17">📥 Downloads</button>
         </div>
-        <div id="video12" class="tab-content active">
+        <div id="video17" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/jjFaJNOHOSw?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Authorization models, permission levels, role-based access control (RBAC), and principle of least privilege.</p><a href="https://www.youtube.com/watch?v=jjFaJNOHOSw" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download12" class="tab-content">
+        <div id="download17" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>📊 RBAC Implementation Guide</h4><p>Role-based access control best practices</p></div><a href="#" class="btn-download" onclick="alert('RBAC guide downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📝 Permission Matrix Template</h4><p>Excel template for access mapping</p></div><a href="#" class="btn-download" onclick="alert('Permission matrix downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-	    <!-- LESSON 13: DAC, MAC, AppArmor -->
-    <div id="lesson-13" class="lesson-card" style="display:none;">
+	
+	<!-- LESSON 18: DAC, MAC, AppArmor -->
+    <div id="lesson-18" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 13 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 18 / 33</span>
             <h2>DAC, MAC & AppArmor</h2>
             <div class="sub">Discretionary · Mandatory · Linux Security Modules</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video13">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download13">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video18">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download18">📥 Downloads</button>
         </div>
-        <div id="video13" class="tab-content active">
+        <div id="video18" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/LJyI8fYxQPI?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Discretionary Access Control (DAC), Mandatory Access Control (MAC), SELinux, and AppArmor security modules.</p><a href="https://www.youtube.com/watch?v=LJyI8fYxQPI" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download13" class="tab-content">
+        <div id="download18" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🛡️ DAC vs MAC Comparison</h4><p>Key differences and use cases</p></div><a href="#" class="btn-download" onclick="alert('DAC vs MAC downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>⚙️ AppArmor Profiles Guide</h4><p>Creating and managing AppArmor policies</p></div><a href="#" class="btn-download" onclick="alert('AppArmor guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-	    <!-- LESSON 14: Isolation -->
-    <div id="lesson-14" class="lesson-card" style="display:none;">
+	
+	<!-- LESSON 19: Isolation -->
+    <div id="lesson-19" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 14 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 19 / 33</span>
             <h2>Isolation</h2>
             <div class="sub">Sandboxing · Virtualization · Container security</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video14">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video19">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download19">📥 Downloads</button>
         </div>
-        <div id="video14" class="tab-content active">
+        <div id="video19" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/Ai2VQrcQjNM?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Security isolation techniques: sandboxing, virtualization, containers, and process isolation.</p><a href="https://www.youtube.com/watch?v=Ai2VQrcQjNM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download14" class="tab-content">
+        <div id="download19" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🐳 Container Security Guide</h4><p>Docker and Kubernetes security best practices</p></div><a href="#" class="btn-download" onclick="alert('Container security downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>📦 Sandboxing Techniques</h4><p>Firejail, chroot, and other isolation methods</p></div><a href="#" class="btn-download" onclick="alert('Sandboxing guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-	    <!-- LESSON 15: Buffer Overflow -->
-    <div id="lesson-15" class="lesson-card" style="display:none;">
+	
+	<!-- LESSON 20: Buffer Overflow -->
+    <div id="lesson-20" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 15 / 28</span>
+            <span class="lesson-badge">📺 VIDEO 20 / 33</span>
             <h2>Buffer Overflow</h2>
             <div class="sub">Memory corruption · Exploitation · Mitigation</div>
         </div>
         <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button>
+            <button class="tab-btn-lesson active" data-tab="video20">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download20">📥 Downloads</button>
         </div>
-        <div id="video15" class="tab-content active">
+        <div id="video20" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/3E0A7AE-R5I?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Buffer overflow vulnerabilities, stack/heap exploitation, and mitigation techniques like ASLR and DEP.</p><a href="https://www.youtube.com/watch?v=3E0A7AE-R5I" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download15" class="tab-content">
+        <div id="download20" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>⚠️ Buffer Overflow Exploit Examples</h4><p>Common payloads and vulnerable code patterns</p></div><a href="#" class="btn-download" onclick="alert('Exploit examples downloaded'); return false;">Download</a></div>
                 <div class="download-item"><div class="download-info"><h4>🛡️ Mitigation Techniques Guide</h4><p>ASLR, DEP, Stack Canaries, and more</p></div><a href="#" class="btn-download" onclick="alert('Mitigation guide downloaded'); return false;">Download</a></div>
@@ -473,295 +590,296 @@
         </div>
     </div>
 
-	<!-- LESSON 16: Bonus Video 1 -->
-    <div id="lesson-16" class="lesson-card" style="display:none;">
-        <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 16 / 28</span>
-            <h2>Bonus: Cybersecurity Awareness 1</h2>
-            <div class="sub">Security fundamentals · Best practices</div>
-        </div>
-        <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video16">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download16">📥 Downloads</button>
-        </div>
-        <div id="video16" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/vy-DIsi0d8g?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Essential cybersecurity awareness for everyone.</p><a href="https://www.youtube.com/watch?v=vy-DIsi0d8g" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
-        </div>
-        <div id="download16" class="tab-content">
-            <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📘 Cybersecurity Awareness Guide</h4><p>PDF with best practices</p></div><a href="#" class="btn-download" onclick="alert('Awareness guide downloaded'); return false;">Download</a></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LESSON 17: Bonus Video 2 -->
-    <div id="lesson-17" class="lesson-card" style="display:none;">
-        <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 17 / 28</span>
-            <h2>Bonus: Cybersecurity Awareness 2</h2>
-            <div class="sub">Threat prevention · Safe practices</div>
-        </div>
-        <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video17">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download17">📥 Downloads</button>
-        </div>
-        <div id="video17" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/s97mBhjDnr0?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Learn how to protect yourself from online threats.</p><a href="https://www.youtube.com/watch?v=s97mBhjDnr0" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
-        </div>
-        <div id="download17" class="tab-content">
-            <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📘 Threat Prevention Checklist</h4><p>Step-by-step guide</p></div><a href="#" class="btn-download" onclick="alert('Threat prevention downloaded'); return false;">Download</a></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LESSON 18: Bonus Video 3 -->
-    <div id="lesson-18" class="lesson-card" style="display:none;">
-        <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 18 / 28
-            <div class="sub">Data protection · Privacy tips</div>
-        </div>
-        <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video18">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download18">📥 Downloads</button>
-        </div>
-        <div id="video18" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/RQtPzelmp9E?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Keep your data safe and secure online.</p><a href="https://www.youtube.com/watch?v=RQtPzelmp9E" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
-        </div>
-        <div id="download18" class="tab-content">
-            <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📘 Data Protection Guide</h4><p>Privacy best practices</p></div><a href="#" class="btn-download" onclick="alert('Data protection guide downloaded'); return false;">Download</a></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LESSON 19: Bonus Video 4 -->
-    <div id="lesson-19" class="lesson-card" style="display:none;">
-        <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 19 / 28</span>
-            <h2>Bonus: Cybersecurity Awareness 4</h2>
-            <div class="sub">Email security · Phishing prevention</div>
-        </div>
-        <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video19">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download19">📥 Downloads</button>
-        </div>
-        <div id="video19" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/-0d1VkJ6Iug?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Recognize and avoid email scams and phishing attacks.</p><a href="https://www.youtube.com/watch?v=-0d1VkJ6Iug" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
-        </div>
-        <div id="download19" class="tab-content">
-            <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📘 Phishing Prevention Guide</h4><p>How to spot fake emails</p></div><a href="#" class="btn-download" onclick="alert('Phishing guide downloaded'); return false;">Download</a></div>
-            </div>
-        </div>
-    </div>
-	
-	<!-- LESSON 20: Mitre Common Vulnerabilities & Exposures -->
-    <div id="lesson-20" class="lesson-card" style="display:none;">
-        <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 20 / 28</span>
-            <h2>Mitre Common Vulnerabilities & Exposures</h2>
-            <div class="sub">Integrity checking · File changes · Auditing</div>
-        </div>
-        <div class="lesson-tabs">
-            <button class="tab-btn-lesson active" data-tab="video20">🎬 Video</button>
-            <button class="tab-btn-lesson" data-tab="download20">📥 Downloads</button>
-        </div>
-        <div id="video20" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/TLv2gby3G3w?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Monitor file integrity, detect unauthorized changes, and implement FIM solutions.</p><a href="https://www.youtube.com/watch?v=TLv2gby3G3w" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
-        </div>
-        <div id="download20" class="tab-content">
-            <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📁 FIM Implementation Guide</h4><p>File integrity monitoring setup</p></div><a href="#" class="btn-download" onclick="alert('FIM guide downloaded'); return false;">Download</a></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LESSON 21: CIS BENCHMARKS -->
+	<!-- LESSON 21: clamav yara new signature detection -->
     <div id="lesson-21" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 21 / 28</span>
-            <h2>CIS BENCHMARKS</h2>
-            <div class="sub">Log collection · Centralization · Retention</div>
+            <span class="lesson-badge">📺 VIDEO 21 / 33</span>
+            <h2>clamav yara new signature detection</h2>
+            <div class="sub">Security fundamentals · Best practices</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video21">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download21">📥 Downloads</button>
         </div>
         <div id="video21" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/2xNpOQwooow?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Log collection strategies, centralization, retention policies, and analysis.</p><a href="https://www.youtube.com/watch?v=2xNpOQwooow" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/vy-DIsi0d8g?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Essential cybersecurity awareness for everyone.</p><a href="https://www.youtube.com/watch?v=vy-DIsi0d8g" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download21" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📊 Log Management Best Practices</h4><p>Collection and retention guide</p></div><a href="#" class="btn-download" onclick="alert('Log management guide downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📘 Cybersecurity Awareness Guide</h4><p>PDF with best practices</p></div><a href="#" class="btn-download" onclick="alert('Awareness guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 22: IDS/IPS with Snort/Suricata -->
+    <!-- LESSON 22: File integrity -->
     <div id="lesson-22" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 22 / 28</span>
-            <h2>Flow of Assessment</h2>
-            <div class="sub">Intrusion detection · Prevention · Rules</div>
+            <span class="lesson-badge">📺 VIDEO 22 / 33</span>
+            <h2>File integrity</h2>
+            <div class="sub">Threat prevention · Safe practices</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video22">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download22">📥 Downloads</button>
         </div>
         <div id="video22" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/PY0WwAFeuZQ?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Deploy Snort and Suricata for intrusion detection and prevention with custom rules.</p><a href="https://www.youtube.com/watch?v=PY0WwAFeuZQ" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/s97mBhjDnr0?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Learn how to protect yourself from online threats.</p><a href="https://www.youtube.com/watch?v=s97mBhjDnr0" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download22" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>🛡️ Snort/Suricata Rules Guide</h4><p>Custom rule writing examples</p></div><a href="#" class="btn-download" onclick="alert('IDS rules downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📘 Threat Prevention Checklist</h4><p>Step-by-step guide</p></div><a href="#" class="btn-download" onclick="alert('Threat prevention downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 23: firewalls and acls -->
+    <!-- LESSON 23: logs -->
     <div id="lesson-23" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 23 / 28</span>
-            <h2>firewalls and acls</h2>
-            <div class="sub">Network analysis · Traffic monitoring · Zeek scripts</div>
+            <span class="lesson-badge">📺 VIDEO 23 / 33</span>
+            <h2>logs</h2>
+            <div class="sub">Data protection · Privacy tips</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video23">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download23">📥 Downloads</button>
         </div>
         <div id="video23" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/VTIWVsbUwSY?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Network security monitoring with Zeek (formerly Bro), traffic analysis, and scripting.</p><a href="https://www.youtube.com/watch?v=VTIWVsbUwSY" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/RQtPzelmp9E?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Keep your data safe and secure online.</p><a href="https://www.youtube.com/watch?v=RQtPzelmp9E" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download23" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📡 Zeek Installation & Configuration</h4><p>Setup guide for Zeek NSM</p></div><a href="#" class="btn-download" onclick="alert('Zeek guide downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📘 Data Protection Guide</h4><p>Privacy best practices</p></div><a href="#" class="btn-download" onclick="alert('Data protection guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 24: owasp & web application firewall WAF -->
+    <!-- LESSON 24: Infrastructure Security Part 1 -->
     <div id="lesson-24" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 24 / 28</span>
-            <h2>owasp & web application firewall WAF</h2>
-            <div class="sub">Network security · Firewalls · Hardening</div>
+            <span class="lesson-badge">📺 VIDEO 24 / 33</span>
+            <h2>Infrastructure Security Part 1</h2>
+            <div class="sub">Email security · Phishing prevention</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video24">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download24">📥 Downloads</button>
         </div>
         <div id="video24" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/gHN2YTivnio?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Infrastructure security fundamentals, network hardening, and best practices.</p><a href="https://www.youtube.com/watch?v=gHN2YTivnio" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/-0d1VkJ6Iug?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Recognize and avoid email scams and phishing attacks.</p><a href="https://www.youtube.com/watch?v=-0d1VkJ6Iug" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download24" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>🏗️ Infrastructure Hardening Guide</h4><p>Security best practices</p></div><a href="#" class="btn-download" onclick="alert('Infrastructure guide downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📘 Phishing Prevention Guide</h4><p>How to spot fake emails</p></div><a href="#" class="btn-download" onclick="alert('Phishing guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-
-    <!-- LESSON 25: Active Directory and Domain Isolation -->
+	
+	<!-- LESSON 25: Mitre Common Vulnerabilities & Exposures -->
     <div id="lesson-25" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 25 / 28</span>
-            <h2>Active Directory and Domain Isolation</h2>
-            <div class="sub">Antivirus · Malware detection · Custom signatures</div>
+            <span class="lesson-badge">📺 VIDEO 25 / 33</span>
+            <h2>Mitre Common Vulnerabilities & Exposures</h2>
+            <div class="sub">Integrity checking · File changes · Auditing</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video25">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download25">📥 Downloads</button>
         </div>
         <div id="video25" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/vsd5BCxomGk?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>ClamAV antivirus, YARA rules, custom signature creation, and malware detection.</p><a href="https://www.youtube.com/watch?v=vsd5BCxomGk" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/TLv2gby3G3w?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Monitor file integrity, detect unauthorized changes, and implement FIM solutions.</p><a href="https://www.youtube.com/watch?v=TLv2gby3G3w" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download25" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>🦠 ClamAV & YARA Guide</h4><p>Installation and custom rules</p></div><a href="#" class="btn-download" onclick="alert('ClamAV guide downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📁 FIM Implementation Guide</h4><p>File integrity monitoring setup</p></div><a href="#" class="btn-download" onclick="alert('FIM guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 26: Remote Access Management -->
+    <!-- LESSON 26: CIS BENCHMARKS -->
     <div id="lesson-26" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 26 / 28</span>
-            <h2>Remote Access Management</h2>
-            <div class="sub">Advanced hardening · Security monitoring</div>
+            <span class="lesson-badge">📺 VIDEO 26 / 33</span>
+            <h2>CIS BENCHMARKS</h2>
+            <div class="sub">Log collection · Centralization · Retention</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video26">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download26">📥 Downloads</button>
         </div>
         <div id="video26" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/11YPK27yssI?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Advanced infrastructure security, continuous monitoring, and incident response.</p><a href="https://www.youtube.com/watch?v=11YPK27yssI" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/2xNpOQwooow?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Log collection strategies, centralization, retention policies, and analysis.</p><a href="https://www.youtube.com/watch?v=2xNpOQwooow" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download26" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>📊 Security Monitoring Checklist</h4><p>Continuous monitoring best practices</p></div><a href="#" class="btn-download" onclick="alert('Monitoring checklist downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>📊 Log Management Best Practices</h4><p>Collection and retention guide</p></div><a href="#" class="btn-download" onclick="alert('Log management guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 27: IPv6 -->
+    <!-- LESSON 27: Flow of Assessment -->
     <div id="lesson-27" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 27 / 28</span>
-            <h2>IPv6</h2>
-            <div class="sub">AWS · Azure · Cloud protection</div>
+            <span class="lesson-badge">📺 VIDEO 27 / 33</span>
+            <h2>Flow of Assessment</h2>
+            <div class="sub">Intrusion detection · Prevention · Rules</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video27">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download27">📥 Downloads</button>
         </div>
         <div id="video27" class="tab-content active">
-            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/cvWfKFb1y8Q?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
-            <div class="description-text"><p>Cloud security basics, shared responsibility model, and best practices for AWS/Azure.</p><a href="https://www.youtube.com/watch?v=cvWfKFb1y8Q" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/PY0WwAFeuZQ?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Deploy Snort and Suricata for intrusion detection and prevention with custom rules.</p><a href="https://www.youtube.com/watch?v=PY0WwAFeuZQ" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
         <div id="download27" class="tab-content">
             <div class="downloads-list">
-                <div class="download-item"><div class="download-info"><h4>☁️ Cloud Security Checklist</h4><p>AWS/Azure security best practices</p></div><a href="#" class="btn-download" onclick="alert('Cloud security guide downloaded'); return false;">Download</a></div>
+                <div class="download-item"><div class="download-info"><h4>🛡️ Snort/Suricata Rules Guide</h4><p>Custom rule writing examples</p></div><a href="#" class="btn-download" onclick="alert('IDS rules downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
 
-    <!-- LESSON 28: Network Monitoring -->
+    <!-- LESSON 28: firewalls and acls -->
     <div id="lesson-28" class="lesson-card" style="display:none;">
         <div class="card-header">
-            <span class="lesson-badge">📺 VIDEO 28 / 28</span>
-            <h2>Network Monitoring</h2>
-            <div class="sub">Never trust · Always verify · Micro-segmentation</div>
+            <span class="lesson-badge">📺 VIDEO 28 / 33</span>
+            <h2>firewalls and acls</h2>
+            <div class="sub">Network analysis · Traffic monitoring · Zeek scripts</div>
         </div>
         <div class="lesson-tabs">
             <button class="tab-btn-lesson active" data-tab="video28">🎬 Video</button>
             <button class="tab-btn-lesson" data-tab="download28">📥 Downloads</button>
         </div>
         <div id="video28" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/VTIWVsbUwSY?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Network security monitoring with Zeek (formerly Bro), traffic analysis, and scripting.</p><a href="https://www.youtube.com/watch?v=VTIWVsbUwSY" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download28" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>📡 Zeek Installation & Configuration</h4><p>Setup guide for Zeek NSM</p></div><a href="#" class="btn-download" onclick="alert('Zeek guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 29: owasp & web application firewall WAF -->
+    <div id="lesson-29" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 29 / 33</span>
+            <h2>owasp & web application firewall WAF</h2>
+            <div class="sub">Network security · Firewalls · Hardening</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video29">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download29">📥 Downloads</button>
+        </div>
+        <div id="video29" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/gHN2YTivnio?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Infrastructure security fundamentals, network hardening, and best practices.</p><a href="https://www.youtube.com/watch?v=gHN2YTivnio" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download29" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>🏗️ Infrastructure Hardening Guide</h4><p>Security best practices</p></div><a href="#" class="btn-download" onclick="alert('Infrastructure guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 30: Active Directory and Domain Isolation -->
+    <div id="lesson-30" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 30 / 33</span>
+            <h2>Active Directory and Domain Isolation</h2>
+            <div class="sub">Antivirus · Malware detection · Custom signatures</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video30">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download30">📥 Downloads</button>
+        </div>
+        <div id="video30" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/vsd5BCxomGk?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>ClamAV antivirus, YARA rules, custom signature creation, and malware detection.</p><a href="https://www.youtube.com/watch?v=vsd5BCxomGk" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download30" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>🦠 ClamAV & YARA Guide</h4><p>Installation and custom rules</p></div><a href="#" class="btn-download" onclick="alert('ClamAV guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 31: Remote Access Management -->
+    <div id="lesson-31" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 31 / 33</span>
+            <h2>Remote Access Management</h2>
+            <div class="sub">Advanced hardening · Security monitoring</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video31">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download31">📥 Downloads</button>
+        </div>
+        <div id="video31" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/11YPK27yssI?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Advanced infrastructure security, continuous monitoring, and incident response.</p><a href="https://www.youtube.com/watch?v=11YPK27yssI" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download31" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>📊 Security Monitoring Checklist</h4><p>Continuous monitoring best practices</p></div><a href="#" class="btn-download" onclick="alert('Monitoring checklist downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 32: IPv6 -->
+    <div id="lesson-32" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 32 / 33</span>
+            <h2>IPv6</h2>
+            <div class="sub">AWS · Azure · Cloud protection</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video32">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download32">📥 Downloads</button>
+        </div>
+        <div id="video32" class="tab-content active">
+            <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/cvWfKFb1y8Q?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
+            <div class="description-text"><p>Cloud security basics, shared responsibility model, and best practices for AWS/Azure.</p><a href="https://www.youtube.com/watch?v=cvWfKFb1y8Q" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
+        </div>
+        <div id="download32" class="tab-content">
+            <div class="downloads-list">
+                <div class="download-item"><div class="download-info"><h4>☁️ Cloud Security Checklist</h4><p>AWS/Azure security best practices</p></div><a href="#" class="btn-download" onclick="alert('Cloud security guide downloaded'); return false;">Download</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSON 33: Network Monitoring -->
+    <div id="lesson-33" class="lesson-card" style="display:none;">
+        <div class="card-header">
+            <span class="lesson-badge">📺 VIDEO 33 / 33</span>
+            <h2>Network Monitoring</h2>
+            <div class="sub">Never trust · Always verify · Micro-segmentation</div>
+        </div>
+        <div class="lesson-tabs">
+            <button class="tab-btn-lesson active" data-tab="video33">🎬 Video</button>
+            <button class="tab-btn-lesson" data-tab="download33">📥 Downloads</button>
+        </div>
+        <div id="video33" class="tab-content active">
             <div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/RwXq60y6GII?rel=0&modestbranding=1" allowfullscreen></iframe></div></div>
             <div class="description-text"><p>Zero Trust principles, implementation strategies, micro-segmentation, and continuous verification.</p><a href="https://www.youtube.com/watch?v=RwXq60y6GII" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div>
         </div>
-        <div id="download28" class="tab-content">
+        <div id="download33" class="tab-content">
             <div class="downloads-list">
                 <div class="download-item"><div class="download-info"><h4>🛡️ Zero Trust Implementation Guide</h4><p>Step-by-step deployment framework</p></div><a href="#" class="btn-download" onclick="alert('Zero trust guide downloaded'); return false;">Download</a></div>
             </div>
         </div>
     </div>
-    <footer>🧠 CyberDefend Academy — Complete Cybersecurity Course (28 modules with downloads)</footer>
+
+    <footer>🧠 CyberDefend Academy — Complete Cybersecurity Course (33 modules with downloads)</footer>
 </div>
 
 <script>
-    // Initialize tab listeners for all lesson cards
     function initAllTabs() {
         document.querySelectorAll('.lesson-card').forEach(card => {
             const btns = card.querySelectorAll('.tab-btn-lesson');
@@ -781,7 +899,6 @@
     }
     initAllTabs();
 
-    // Function to stop all playing videos
     function stopAllVideos() {
         document.querySelectorAll('iframe').forEach(iframe => {
             const src = iframe.src;
@@ -790,25 +907,17 @@
         });
     }
 
-    // Navigation between lessons
     const navItems = document.querySelectorAll('.nav-item');
-    const totalLessons = 28;
+    const totalLessons = 33;
     
     function activateLesson(id) {
-        // Stop all playing videos before switching lessons
         stopAllVideos();
-        
-        // Hide all lessons
         for (let i = 1; i <= totalLessons; i++) {
             const el = document.getElementById(`lesson-${i}`);
             if (el) el.style.display = 'none';
         }
-        
-        // Show selected lesson
         const target = document.getElementById(`lesson-${id}`);
         if (target) target.style.display = 'block';
-        
-        // Update active nav item
         navItems.forEach(item => item.classList.remove('active'));
         const activeItem = document.querySelector(`.nav-item[data-lesson="${id}"]`);
         if (activeItem) activeItem.classList.add('active');
