@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CyberDefend · AWS Cloud Foundation Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fc; color: #1a2c3e; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 320px; background: #fff; border-right: 1px solid #e6edf4; display: flex; flex-direction: column; overflow-y: auto; flex-shrink: 0; }
+        .brand { padding: 24px; border-bottom: 1px solid #eef2f8; background: linear-gradient(135deg, #ffffff 0%, #fafcff 100%); }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { background: #ff9900; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 12px rgba(255,153,0,0.2); }
+        .logo-text h1 { font-size: 1.3rem; font-weight: 800; color: #0b2b3b; }
+        .logo-text span { font-size: 0.65rem; color: #ff9900; font-weight: 600; letter-spacing: 1px; }
+        .tagline { font-size: 0.7rem; color: #5c6f87; margin-top: 8px; border-left: 3px solid #ff9900; padding-left: 10px; }
+        .back-link { padding: 16px 20px; display: block; color: #ff9900; text-decoration: none; font-size: 0.8rem; font-weight: 500; }
+        .back-link:hover { background: #f0f9fe; }
+        .nav-list { padding: 16px 0; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; margin: 2px 12px; border-radius: 12px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+        .nav-item:hover, .nav-item.active { background: #e9f4fa; color: #027e9e; font-weight: 600; border-left: 3px solid #ff9900; }
+        .check-icon { font-size: 1.1rem; min-width: 24px; }
+        .main-content { flex: 1; overflow-y: auto; padding: 32px 40px; background: #f5f7fc; }
+        .lesson-card { max-width: 1000px; margin: 0 auto 48px; background: white; border-radius: 28px; border: 1px solid #eef2f8; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .card-header { padding: 28px 32px 12px; border-bottom: 1px solid #f0f4f9; }
+        .lesson-badge { font-size: 0.7rem; font-weight: 600; color: #ff9900; background: #fff3e0; display: inline-block; padding: 4px 12px; border-radius: 30px; margin-bottom: 12px; letter-spacing: 0.3px; }
+        .card-header h2 { font-size: 1.6rem; font-weight: 700; color: #0b2b3b; margin: 8px 0 8px 0; }
+        .sub { color: #5c6f87; margin-top: 8px; font-size: 0.9rem; }
+        
+        .lesson-tabs {
+            display: flex;
+            border-bottom: 2px solid #eef2f8;
+            margin: 16px 28px 0 28px;
+            gap: 8px;
+        }
+        .tab-btn-lesson {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6c7e8f;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .tab-btn-lesson.active {
+            color: #ff9900;
+            background: #fff3e0;
+            border-bottom: 3px solid #ff9900;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 28px 28px 28px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .video-container { margin: 0 0 16px 0; border-radius: 20px; overflow: hidden; background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .description-text { line-height: 1.65; color: #2c3e50; font-size: 0.95rem; }
+        .info-grid { background: #f9fbfe; border-radius: 18px; padding: 18px 24px; margin: 20px 0 0; border-left: 4px solid #ff9900; }
+        .btn-youtube { display: inline-flex; align-items: center; gap: 8px; background: #ff0000; color: white; padding: 8px 18px; border-radius: 40px; font-weight: 600; font-size: 0.8rem; text-decoration: none; margin-top: 12px; transition: 0.2s; }
+        .btn-youtube:hover { background: #cc0000; transform: scale(0.98); }
+        
+        .downloads-list { display: flex; flex-direction: column; gap: 12px; }
+        .download-item { background: #f9fbfe; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border: 1px solid #eef2f8; }
+        .download-info h4 { font-size: 1rem; margin-bottom: 4px; color: #0b2b3b; }
+        .download-info p { font-size: 0.75rem; color: #5c6f87; }
+        .btn-download { background: #ff9900; color: white; padding: 8px 20px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.75rem; transition: 0.2s; display: inline-block; }
+        .btn-download:hover { background: #e68a00; }
+        
+        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #7f8c9a; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+        @media (max-width: 780px) { .sidebar { width: 280px; } .main-content { padding: 20px; } .card-header h2 { font-size: 1.3rem; } .lesson-tabs { margin: 12px 16px 0; } .tab-content { padding: 16px; } }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #eef2f8; }
+        ::-webkit-scrollbar-thumb { background: #bdd3e4; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <div class="brand">
+        <div class="logo">
+            <div class="logo-icon">☁️</div>
+            <div class="logo-text">
+                <h1>CyberDefend</h1>
+                <span>AWS CLOUD FOUNDATION</span>
+            </div>
+        </div>
+        <div class="tagline">Part of Accenture | AWS Academy Cloud Foundations</div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+    <div class="nav-list">
+        <div style="padding: 8px 20px 4px; font-size:0.7rem; color:#ff9900; font-weight:600;">☁️ AWS CLOUD FOUNDATION COURSE</div>
+        <div class="nav-item active" data-lesson="1"><span class="check-icon">📘</span> section-1 aws cloud foundation</div>
+        <div class="nav-item" data-lesson="2"><span class="check-icon">✍️</span> section-1 aws cloud foundation ... written</div>
+        <div class="nav-item" data-lesson="3"><span class="check-icon">💰</span> section-2 Aws free tier | Pricing Calculator | Billing | Support Plans | Well-Architected Framework</div>
+        <div class="nav-item" data-lesson="4"><span class="check-icon">🌍</span> section-3 AWS Global Infrastructure | AWS Services and Service Category | become employable</div>
+        <div class="nav-item" data-lesson="5"><span class="check-icon">🔐</span> section 4 AWS Key Management Service (KMS) | Cognito | Shield | Config | Artifact | LAB 1 IAM users</div>
+        <div class="nav-item" data-lesson="6"><span class="check-icon">🌐</span> section 5 Networking basics | CIDR | Amazon VPC | VPC networking | VPC security (ACL/SG)</div>
+        <div class="nav-item" data-lesson="7"><span class="check-icon">💻</span> section6 aws Compute lab</div>
+        <div class="nav-item" data-lesson="8"><span class="check-icon">⚡</span> section 7 AWS Serverless services (lambda function lab)</div>
+        <div class="nav-item" data-lesson="9"><span class="check-icon">🐳</span> section 8 AWS Containers services | AWS Elastic Bean Stalk (LAB)</div>
+        <div class="nav-item" data-lesson="10"><span class="check-icon">💾</span> section 9 AWS Storage (LAB)</div>
+        <div class="nav-item" data-lesson="11"><span class="check-icon">🗄️</span> section 10 AWS Database</div>
+        <div class="nav-item" data-lesson="12"><span class="check-icon">🗄️</span> section 10 AWS Database v2 database</div>
+        <div class="nav-item" data-lesson="13"><span class="check-icon">⚖️</span> Sec 11(Edited) AWS Elastic Load Balancing | Auto Scaling | Trusted Advisor | Well Architect</div>
+        <div class="nav-item" data-lesson="14"><span class="check-icon">🏆</span> Claim your badge Certificate via Credly AWS Academy Cloud Foundations</div>
+        <div class="nav-item" data-lesson="15"><span class="check-icon">📦</span> serverless containers storage</div>
+        <div class="nav-item" data-lesson="16"><span class="check-icon">🧪</span> AWS Academy Cloud Foundations – Sandbox</div>
+        <div class="nav-item" data-lesson="17"><span class="check-icon">📋</span> Section 11 - Elastic Load Balancer LAB | Sandbox LAB | Review questions on course</div>
+    </div>
+    <div style="margin-top: auto; padding: 18px; font-size: 0.6rem; color: #8ba0b2; border-top: 1px solid #edf2f7; text-align: center;">
+        ⚡ AWS Cloud Foundation - 17 Modules | AWS Academy
+    </div>
+</div>
+<div class="main-content">
+    <!-- LESSON 1: section-1 aws cloud foundation -->
+    <div id="lesson-1" class="lesson-card">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 1 / 17</span><h2>section-1 aws cloud foundation</h2><div class="sub">AWS Cloud Fundamentals · Core Concepts · Cloud Computing Basics</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video1">🎬 Video</button><button class="tab-btn-lesson" data-tab="download1">📥 Downloads</button></div>
+        <div id="video1" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/aAsS1RfGw0g?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Cloud Foundation introduction: cloud computing concepts, deployment models, and AWS global infrastructure overview.</p><div class="info-grid"><p>☁️ Topics: Cloud computing benefits, AWS history, shared responsibility model, and cloud adoption frameworks.</p></div><a href="https://youtu.be/aAsS1RfGw0g?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download1" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📘 AWS Cloud Foundation Guide</h4><p>Lesson slides and notes</p></div><a href="#" class="btn-download" onclick="alert('Lesson 1 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 2: section-1 aws cloud foundation ... written -->
+    <div id="lesson-2" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 2 / 17</span><h2>section-1 aws cloud foundation ... written</h2><div class="sub">Written Guide · Documentation · Study Notes</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video2">🎬 Video</button><button class="tab-btn-lesson" data-tab="download2">📥 Downloads</button></div>
+        <div id="video2" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/NlKilTeWd0o?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Written companion guide for AWS Cloud Foundation section with detailed explanations and study materials.</p><div class="info-grid"><p>✍️ Topics: Detailed notes, key terminology, exam tips, and concept explanations.</p></div><a href="https://youtu.be/NlKilTeWd0o?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download2" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📝 Written Notes PDF</h4><p>Complete study guide</p></div><a href="#" class="btn-download" onclick="alert('Lesson 2 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 3: section-2 AWS free tier | Pricing Calculator | Billing -->
+    <div id="lesson-3" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 3 / 17</span><h2>section-2 Aws free tier | Pricing Calculator | Billing | Support Plans | Well-Architected Framework</h2><div class="sub">AWS Free Tier · Pricing Calculator · Billing Dashboard · Support Plans · Well-Architected Framework</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video3">🎬 Video</button><button class="tab-btn-lesson" data-tab="download3">📥 Downloads</button></div>
+        <div id="video3" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/W2OO9BKZiZc?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Free Tier, Pricing Calculator, Billing management, Support Plans, and Well-Architected Framework overview.</p><div class="info-grid"><p>💰 Topics: Free tier limits, cost estimation, billing alerts, support tiers, and architectural best practices.</p></div><a href="https://youtu.be/W2OO9BKZiZc?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download3" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>💰 Pricing & Billing Guide</h4><p>Cost management best practices</p></div><a href="#" class="btn-download" onclick="alert('Lesson 3 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 4: AWS Global Infrastructure -->
+    <div id="lesson-4" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 4 / 17</span><h2>section-3 AWS Global Infrastructure | AWS Services and Service Category | become employable</h2><div class="sub">Regions · Availability Zones · Edge Locations · Service Categories</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video4">🎬 Video</button><button class="tab-btn-lesson" data-tab="download4">📥 Downloads</button></div>
+        <div id="video4" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/kCHSWtDOmyo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Global Infrastructure, service categories, and career pathways in cloud computing.</p><div class="info-grid"><p>🌍 Topics: Regions, Availability Zones, edge locations, compute, storage, database, networking services.</p></div><a href="https://youtu.be/kCHSWtDOmyo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download4" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🌍 Global Infrastructure Map</h4><p>Regions and AZs reference</p></div><a href="#" class="btn-download" onclick="alert('Lesson 4 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 5: KMS, Cognito, Shield, Config, Artifact, IAM LAB -->
+    <div id="lesson-5" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 5 / 17</span><h2>section 4 AWS Key Management Service (KMS) | Cognito | Shield | Config | Artifact | LAB 1 IAM users</h2><div class="sub">KMS · Cognito · Shield · Config · Artifact · IAM Users LAB</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video5">🎬 Video</button><button class="tab-btn-lesson" data-tab="download5">📥 Downloads</button></div>
+        <div id="video5" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/GZW-5C1RY_M?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS security services: KMS, Cognito, Shield, Config, Artifact, plus hands-on IAM users LAB.</p><div class="info-grid"><p>🔐 Topics: Encryption, identity management, DDoS protection, compliance, IAM user creation and policies.</p></div><a href="https://youtu.be/GZW-5C1RY_M?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download5" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔐 Security Services Guide</h4><p>KMS, Cognito, Shield overview</p></div><a href="#" class="btn-download" onclick="alert('Lesson 5 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 6: Networking basics, VPC -->
+    <div id="lesson-6" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 6 / 17</span><h2>section 5 Networking basics | CIDR | Amazon VPC | VPC networking | VPC security (ACL/SG)</h2><div class="sub">CIDR · VPC · Subnets · Route Tables · Security Groups · NACLs</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video6">🎬 Video</button><button class="tab-btn-lesson" data-tab="download6">📥 Downloads</button></div>
+        <div id="video6" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/SIzts63gaCw?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Networking fundamentals, CIDR notation, Amazon VPC, subnets, routing, and VPC security with ACLs and Security Groups.</p><div class="info-grid"><p>🌐 Topics: IP addressing, VPC components, public/private subnets, NAT gateways, security group rules.</p></div><a href="https://youtu.be/SIzts63gaCw?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download6" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🌐 VPC Networking Guide</h4><p>CIDR, subnets, security groups</p></div><a href="#" class="btn-download" onclick="alert('Lesson 6 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 7: AWS Compute lab -->
+    <div id="lesson-7" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 7 / 17</span><h2>section6 aws Compute lab</h2><div class="sub">EC2 · Compute LAB · Virtual Machines</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video7">🎬 Video</button><button class="tab-btn-lesson" data-tab="download7">📥 Downloads</button></div>
+        <div id="video7" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/OP0_V7OSROk?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Hands-on AWS Compute Lab: EC2 instances, AMI, instance types, and compute services.</p><div class="info-grid"><p>💻 Topics: Launching EC2, connecting to instances, compute pricing models, and placement groups.</p></div><a href="https://youtu.be/OP0_V7OSROk?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download7" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>💻 EC2 Lab Guide</h4><p>Compute lab instructions</p></div><a href="#" class="btn-download" onclick="alert('Lesson 7 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 8: Serverless services lambda -->
+    <div id="lesson-8" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 8 / 17</span><h2>section 7 AWS Serverless services (lambda function lab)</h2><div class="sub">AWS Lambda · Serverless LAB · Function as a Service</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video8">🎬 Video</button><button class="tab-btn-lesson" data-tab="download8">📥 Downloads</button></div>
+        <div id="video8" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/_WqsxtKSZ8k?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Serverless services and Lambda function lab: event-driven computing, API Gateway integration.</p><div class="info-grid"><p>⚡ Topics: Lambda functions, triggers, serverless architecture, event sources, and practical lab.</p></div><a href="https://youtu.be/_WqsxtKSZ8k?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download8" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>⚡ Lambda Lab Guide</h4><p>Serverless functions tutorial</p></div><a href="#" class="btn-download" onclick="alert('Lesson 8 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 9: Containers and Elastic Beanstalk -->
+    <div id="lesson-9" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 9 / 17</span><h2>section 8 AWS Containers services | AWS Elastic Bean Stalk (LAB)</h2><div class="sub">ECS · EKS · Elastic Beanstalk · Containers LAB</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video9">🎬 Video</button><button class="tab-btn-lesson" data-tab="download9">📥 Downloads</button></div>
+        <div id="video9" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/geAv-5ngrX4?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Containers services (ECS, EKS) and Elastic Beanstalk LAB for application deployment.</p><div class="info-grid"><p>🐳 Topics: Docker containers, ECS clusters, EKS orchestration, Beanstalk environments.</p></div><a href="https://youtu.be/geAv-5ngrX4?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download9" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🐳 Containers Guide</h4><p>ECS, EKS, Beanstalk lab</p></div><a href="#" class="btn-download" onclick="alert('Lesson 9 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 10: AWS Storage LAB -->
+    <div id="lesson-10" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 10 / 17</span><h2>section 9 AWS Storage (LAB)</h2><div class="sub">S3 · EBS · EFS · Storage LAB</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video10">🎬 Video</button><button class="tab-btn-lesson" data-tab="download10">📥 Downloads</button></div>
+        <div id="video10" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/Jjes-nrAq9w?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Storage LAB covering S3, EBS, EFS, and storage best practices.</p><div class="info-grid"><p>💾 Topics: S3 buckets, storage classes, EBS volumes, EFS file systems, and lifecycle policies.</p></div><a href="https://youtu.be/Jjes-nrAq9w?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download10" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>💾 Storage Lab Guide</h4><p>S3, EBS, EFS tutorial</p></div><a href="#" class="btn-download" onclick="alert('Lesson 10 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 11: AWS Database -->
+    <div id="lesson-11" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 11 / 17</span><h2>section 10 AWS Database</h2><div class="sub">RDS · DynamoDB · Aurora · Redshift</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video11">🎬 Video</button><button class="tab-btn-lesson" data-tab="download11">📥 Downloads</button></div>
+        <div id="video11" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/ftpYeguzIbM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>AWS Database services: RDS, DynamoDB, Aurora, Redshift, and database selection criteria.</p><div class="info-grid"><p>🗄️ Topics: Relational vs NoSQL, database migration, backup and restore, performance optimization.</p></div><a href="https://youtu.be/ftpYeguzIbM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download11" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🗄️ Database Guide</h4><p>RDS, DynamoDB overview</p></div><a href="#" class="btn-download" onclick="alert('Lesson 11 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 12: AWS Database v2 -->
+    <div id="lesson-12" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 12 / 17</span><h2>section 10 AWS Database v2 database</h2><div class="sub">Advanced Database Concepts · Deep Dive</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video12">🎬 Video</button><button class="tab-btn-lesson" data-tab="download12">📥 Downloads</button></div>
+        <div id="video12" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/ftpYeguzIbM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Additional AWS Database content and advanced database concepts.</p><div class="info-grid"><p>🗄️ Topics: Database replication, caching strategies, and high availability.</p></div><a href="https://youtu.be/ftpYeguzIbM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download12" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🗄️ Advanced Database Guide</h4><p>Deep dive materials</p></div><a href="#" class="btn-download" onclick="alert('Lesson 12 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 13: Elastic Load Balancing, Auto Scaling -->
+    <div id="lesson-13" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 13 / 17</span><h2>Sec 11(Edited) AWS Elastic Load Balancing | Auto Scaling | Trusted Advisor | Well Architect</h2><div class="sub">ELB · Auto Scaling · Trusted Advisor · Well-Architected</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video13">🎬 Video</button><button class="tab-btn-lesson" data-tab="download13">📥 Downloads</button></div>
+        <div id="video13" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/f67RN1Iv2Zo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Elastic Load Balancing, Auto Scaling groups, Trusted Advisor, and Well-Architected Framework review.</p><div class="info-grid"><p>⚖️ Topics: Load balancer types, scaling policies, health checks, cost optimization, security best practices.</p></div><a href="https://youtu.be/f67RN1Iv2Zo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download13" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>⚖️ ELB & Auto Scaling Guide</h4><p>High availability best practices</p></div><a href="#" class="btn-download" onclick="alert('Lesson 13 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 14: Claim your badge Certificate -->
+    <div id="lesson-14" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 14 / 17</span><h2>Claim your badge Certificate via Credly AWS Academy Cloud Foundations</h2><div class="sub">Credly Badge · Certificate · Course Completion</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video14">🎬 Video</button><button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button></div>
+        <div id="video14" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/HaaTF6zaGHE?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>How to claim your AWS Academy Cloud Foundations badge and certificate via Credly.</p><div class="info-grid"><p>🏆 Topics: Credly account setup, badge claiming process, sharing credentials, and career impact.</p></div><a href="https://youtu.be/HaaTF6zaGHE?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download14" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🏆 Certificate Guide</h4><p>Credly badge instructions</p></div><a href="#" class="btn-download" onclick="alert('Lesson 14 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 15: serverless containers storage -->
+    <div id="lesson-15" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 15 / 17</span><h2>serverless containers storage</h2><div class="sub">Serverless · Containers · Storage Integration</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button><button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button></div>
+        <div id="video15" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/N-aEcrP-2wo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Integration of serverless, containers, and storage services in AWS.</p><div class="info-grid"><p>📦 Topics: Combining Lambda, ECS, and S3 for modern applications.</p></div><a href="https://youtu.be/N-aEcrP-2wo?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download15" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📦 Integration Guide</h4><p>Serverless + containers + storage</p></div><a href="#" class="btn-download" onclick="alert('Lesson 15 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 16: AWS Academy Cloud Foundations – Sandbox -->
+    <div id="lesson-16" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 16 / 17</span><h2>AWS Academy Cloud Foundations – Sandbox</h2><div class="sub">AWS Sandbox Environment · Hands-on Labs</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video16">🎬 Video</button><button class="tab-btn-lesson" data-tab="download16">📥 Downloads</button></div>
+        <div id="video16" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/kxX8bsnq76g?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Working with AWS Academy Cloud Foundations sandbox environment for hands-on practice.</p><div class="info-grid"><p>🧪 Topics: Sandbox access, lab environment, practice exercises, and experiment safely.</p></div><a href="https://youtu.be/kxX8bsnq76g?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download16" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🧪 Sandbox Guide</h4><p>Lab environment tutorial</p></div><a href="#" class="btn-download" onclick="alert('Lesson 16 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 17: Elastic Load Balancer LAB | Sandbox LAB | Review questions -->
+    <div id="lesson-17" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 17 / 17</span><h2>Section 11 - Elastic Load Balancer LAB | Sandbox LAB | Review questions on course</h2><div class="sub">ELB LAB · Sandbox LAB · Course Review Questions</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video17">🎬 Video</button><button class="tab-btn-lesson" data-tab="download17">📥 Downloads</button></div>
+        <div id="video17" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/fhWmqAk5xVM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Elastic Load Balancer LAB, Sandbox LAB, and review questions for the entire course.</p><div class="info-grid"><p>📋 Topics: ELB configuration, lab walkthrough, exam-style questions, course recap.</p></div><a href="https://youtu.be/fhWmqAk5xVM?list=PL8yj0vXkratpVKZsfUJ06as2QMhvNhczM" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download17" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📋 Review Questions</h4><p>Course assessment prep</p></div><a href="#" class="btn-download" onclick="alert('Lesson 17 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <footer>☁️ CyberDefend Academy — AWS Cloud Foundation Course (17 modules) | Part of Accenture | AWS Academy</footer>
+</div>
+
+<script>
+    function initAllTabs() {
+        document.querySelectorAll('.lesson-card').forEach(card => {
+            const btns = card.querySelectorAll('.tab-btn-lesson');
+            btns.forEach(btn => {
+                btn.removeEventListener('click', (e) => {});
+                btn.addEventListener('click', (e) => {
+                    const parentCard = btn.closest('.lesson-card');
+                    const targetTabId = btn.getAttribute('data-tab');
+                    parentCard.querySelectorAll('.tab-btn-lesson').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    parentCard.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    const targetContent = parentCard.querySelector(`#${targetTabId}`);
+                    if (targetContent) targetContent.classList.add('active');
+                });
+            });
+        });
+    }
+    initAllTabs();
+
+    function stopAllVideos() {
+        document.querySelectorAll('iframe').forEach(iframe => {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        });
+    }
+
+    const navItems = document.querySelectorAll('.nav-item');
+    const totalLessons = 17;
+    
+    function activateLesson(id) {
+        stopAllVideos();
+        for (let i = 1; i <= totalLessons; i++) {
+            const el = document.getElementById(`lesson-${i}`);
+            if (el) el.style.display = 'none';
+        }
+        const target = document.getElementById(`lesson-${id}`);
+        if (target) target.style.display = 'block';
+        navItems.forEach(item => item.classList.remove('active'));
+        const activeItem = document.querySelector(`.nav-item[data-lesson="${id}"]`);
+        if (activeItem) activeItem.classList.add('active');
+    }
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = parseInt(item.getAttribute('data-lesson'));
+            if (!isNaN(id)) { 
+                activateLesson(id); 
+                window.location.hash = `lesson-${id}`; 
+            }
+        });
+    });
+    
+    const hash = window.location.hash.substring(1);
+    if (hash.startsWith('lesson-')) {
+        const num = parseInt(hash.split('-')[1]);
+        if (num >= 1 && num <= totalLessons) activateLesson(num);
+        else activateLesson(1);
+    } else activateLesson(1);
+    
+    window.addEventListener('hashchange', () => {
+        const h = window.location.hash.substring(1);
+        if (h.startsWith('lesson-')) {
+            const n = parseInt(h.split('-')[1]);
+            if (n >= 1 && n <= totalLessons) activateLesson(n);
+        }
+    });
+</script>
+</body>
+</html>

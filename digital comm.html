@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CyberDefend · Digital Communications Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fc; color: #1a2c3e; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 320px; background: #fff; border-right: 1px solid #e6edf4; display: flex; flex-direction: column; overflow-y: auto; flex-shrink: 0; }
+        .brand { padding: 24px; border-bottom: 1px solid #eef2f8; background: linear-gradient(135deg, #ffffff 0%, #fafcff 100%); }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { background: #02b3e4; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 12px rgba(2,179,228,0.2); }
+        .logo-text h1 { font-size: 1.3rem; font-weight: 800; color: #0b2b3b; }
+        .logo-text span { font-size: 0.65rem; color: #02b3e4; font-weight: 600; letter-spacing: 1px; }
+        .tagline { font-size: 0.7rem; color: #5c6f87; margin-top: 8px; border-left: 3px solid #02b3e4; padding-left: 10px; }
+        .back-link { padding: 16px 20px; display: block; color: #02b3e4; text-decoration: none; font-size: 0.8rem; font-weight: 500; }
+        .back-link:hover { background: #f0f9fe; }
+        .nav-list { padding: 16px 0; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; margin: 2px 12px; border-radius: 12px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+        .nav-item:hover, .nav-item.active { background: #e9f4fa; color: #027e9e; font-weight: 600; border-left: 3px solid #02b3e4; }
+        .check-icon { font-size: 1.1rem; min-width: 24px; }
+        .main-content { flex: 1; overflow-y: auto; padding: 32px 40px; background: #f5f7fc; }
+        .lesson-card { max-width: 1000px; margin: 0 auto 48px; background: white; border-radius: 28px; border: 1px solid #eef2f8; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .card-header { padding: 28px 32px 12px; border-bottom: 1px solid #f0f4f9; }
+        .lesson-badge { font-size: 0.7rem; font-weight: 600; color: #02b3e4; background: #e2f0f7; display: inline-block; padding: 4px 12px; border-radius: 30px; margin-bottom: 12px; letter-spacing: 0.3px; }
+        .card-header h2 { font-size: 1.6rem; font-weight: 700; color: #0b2b3b; margin: 8px 0 8px 0; }
+        .sub { color: #5c6f87; margin-top: 8px; font-size: 0.9rem; }
+        
+        .lesson-tabs {
+            display: flex;
+            border-bottom: 2px solid #eef2f8;
+            margin: 16px 28px 0 28px;
+            gap: 8px;
+        }
+        .tab-btn-lesson {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6c7e8f;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .tab-btn-lesson.active {
+            color: #02b3e4;
+            background: #f0f9fe;
+            border-bottom: 3px solid #02b3e4;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 28px 28px 28px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .video-container { margin: 0 0 16px 0; border-radius: 20px; overflow: hidden; background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .description-text { line-height: 1.65; color: #2c3e50; font-size: 0.95rem; }
+        .info-grid { background: #f9fbfe; border-radius: 18px; padding: 18px 24px; margin: 20px 0 0; border-left: 4px solid #02b3e4; }
+        .btn-youtube { display: inline-flex; align-items: center; gap: 8px; background: #ff0000; color: white; padding: 8px 18px; border-radius: 40px; font-weight: 600; font-size: 0.8rem; text-decoration: none; margin-top: 12px; transition: 0.2s; }
+        .btn-youtube:hover { background: #cc0000; transform: scale(0.98); }
+        
+        .downloads-list { display: flex; flex-direction: column; gap: 12px; }
+        .download-item { background: #f9fbfe; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border: 1px solid #eef2f8; }
+        .download-info h4 { font-size: 1rem; margin-bottom: 4px; color: #0b2b3b; }
+        .download-info p { font-size: 0.75rem; color: #5c6f87; }
+        .btn-download { background: #02b3e4; color: white; padding: 8px 20px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.75rem; transition: 0.2s; display: inline-block; }
+        .btn-download:hover { background: #028cae; }
+        
+        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #7f8c9a; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+        @media (max-width: 780px) { .sidebar { width: 280px; } .main-content { padding: 20px; } .card-header h2 { font-size: 1.3rem; } .lesson-tabs { margin: 12px 16px 0; } .tab-content { padding: 16px; } }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #eef2f8; }
+        ::-webkit-scrollbar-thumb { background: #bdd3e4; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <div class="brand">
+        <div class="logo">
+            <div class="logo-icon">📡</div>
+            <div class="logo-text">
+                <h1>CyberDefend</h1>
+                <span>DIGITAL COMM</span>
+            </div>
+        </div>
+        <div class="tagline">Part of Accenture | Digital Communications Course</div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+    <div class="nav-list">
+        <div style="padding: 8px 20px 4px; font-size:0.7rem; color:#02b3e4; font-weight:600;">📡 DIGITAL COMMUNICATIONS (20 VIDEOS)</div>
+        <div class="nav-item active" data-lesson="1"><span class="check-icon">📡</span> 1. digital comm introduction</div>
+        <div class="nav-item" data-lesson="2"><span class="check-icon">📡</span> 2. digital comm Introduction V2</div>
+        <div class="nav-item" data-lesson="3"><span class="check-icon">🎵</span> 3. digital comm Pulse Code Modulation (PCM)</div>
+        <div class="nav-item" data-lesson="4"><span class="check-icon">🎵</span> 4. digital comm Pulse Code Modulation (PCM) V2</div>
+        <div class="nav-item" data-lesson="5"><span class="check-icon">🔊</span> 5. digital comm Pulse Code Modulation (PCM) sampling part-2</div>
+        <div class="nav-item" data-lesson="6"><span class="check-icon">📊</span> 6. digital comm Pulse Code Modulation (PCM) quantization</div>
+        <div class="nav-item" data-lesson="7"><span class="check-icon">📊</span> 7. digital comm Pulse Code Modulation (PCM) quantization V2</div>
+        <div class="nav-item" data-lesson="8"><span class="check-icon">📈</span> 8. digital comm Delta modulation</div>
+        <div class="nav-item" data-lesson="9"><span class="check-icon">🔢</span> 9. digital comm Line Coding and its Types (RZ- NRZ- Polar - Unipolar- Bipolar- manchester)</div>
+        <div class="nav-item" data-lesson="10"><span class="check-icon">🔢</span> 10. digital comm Line Coding and its Types V2</div>
+        <div class="nav-item" data-lesson="11"><span class="check-icon">📝</span> 11. digital comm - digital example</div>
+        <div class="nav-item" data-lesson="12"><span class="check-icon">🌐</span> 12. digital comm Baseband Transmission and Digital Multiplexing (ISI)</div>
+        <div class="nav-item" data-lesson="13"><span class="check-icon">📊</span> 13. digital comm digital modulation ASK-FSK-PSK v1</div>
+        <div class="nav-item" data-lesson="14"><span class="check-icon">📊</span> 14. digital comm digital modulation ASK-FSK-PSK v2</div>
+        <div class="nav-item" data-lesson="15"><span class="check-icon">🔀</span> 15. digital comm DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK</div>
+        <div class="nav-item" data-lesson="16"><span class="check-icon">🔀</span> 16. digital comm DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK v2</div>
+        <div class="nav-item" data-lesson="17"><span class="check-icon">📡</span> 17. digital comm v1</div>
+        <div class="nav-item" data-lesson="18"><span class="check-icon">📡</span> 18. digital comm v2</div>
+        <div class="nav-item" data-lesson="19"><span class="check-icon">🎯</span> 19. last digital</div>
+        <div class="nav-item" data-lesson="20"><span class="check-icon">📐</span> 20. digital comm QAM | m-ary modulation | probability of error</div>
+        <div class="nav-item" data-lesson="21"><span class="check-icon">📐</span> 21. digital comm Probability of Error for BPSK | Gray Code</div>
+    </div>
+    <div style="margin-top: auto; padding: 18px; font-size: 0.6rem; color: #8ba0b2; border-top: 1px solid #edf2f7; text-align: center;">
+        ⚡ Digital Communications Course - 21 Modules
+    </div>
+</div>
+<div class="main-content">
+    <!-- LESSON 1: digital comm introduction -->
+    <div id="lesson-1" class="lesson-card">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 1 / 21</span><h2>digital comm introduction</h2><div class="sub">Digital Communications Fundamentals · Basic Concepts</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video1">🎬 Video</button><button class="tab-btn-lesson" data-tab="download1">📥 Downloads</button></div>
+        <div id="video1" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/vtWUR4iI60Y?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Introduction to digital communications: basic concepts, digital vs analog, and communication system blocks.</p><div class="info-grid"><p>📡 Topics: Source encoding, channel encoding, modulation, demodulation, and noise effects.</p></div><a href="https://youtu.be/vtWUR4iI60Y?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download1" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📡 Digital Comm Intro</h4><p>Fundamentals notes PDF</p></div><a href="#" class="btn-download" onclick="alert('Lesson 1 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 2: digital comm Introduction V2 -->
+    <div id="lesson-2" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 2 / 21</span><h2>digital comm Introduction V2</h2><div class="sub">Digital Communications Fundamentals · Advanced Concepts</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video2">🎬 Video</button><button class="tab-btn-lesson" data-tab="download2">📥 Downloads</button></div>
+        <div id="video2" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/pVVT7qf1spc?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Introduction to digital communications version 2: deeper look at communication principles.</p><div class="info-grid"><p>📡 Topics: Signal representation, bandwidth, and communication channel models.</p></div><a href="https://youtu.be/pVVT7qf1spc?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download2" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📡 Digital Comm Advanced</h4><p>Detailed study guide</p></div><a href="#" class="btn-download" onclick="alert('Lesson 2 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 3: digital comm Pulse Code Modulation (PCM) -->
+    <div id="lesson-3" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 3 / 21</span><h2>digital comm Pulse Code Modulation (PCM)</h2><div class="sub">Pulse Code Modulation · Sampling · Quantization</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video3">🎬 Video</button><button class="tab-btn-lesson" data-tab="download3">📥 Downloads</button></div>
+        <div id="video3" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/NbmhR-UehDs?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Pulse Code Modulation (PCM): sampling theorem, quantization levels, and encoding process.</p><div class="info-grid"><p>🎵 Topics: Nyquist sampling, aliasing, quantization error, and PCM system design.</p></div><a href="https://youtu.be/NbmhR-UehDs?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download3" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🎵 PCM Guide</h4><p>Pulse code modulation notes</p></div><a href="#" class="btn-download" onclick="alert('Lesson 3 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 4: digital comm Pulse Code Modulation (PCM) V2 -->
+    <div id="lesson-4" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 4 / 21</span><h2>digital comm Pulse Code Modulation (PCM) V2</h2><div class="sub">PCM Deep Dive · Advanced Topics</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video4">🎬 Video</button><button class="tab-btn-lesson" data-tab="download4">📥 Downloads</button></div>
+        <div id="video4" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/9dDCNjozQq0?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Pulse Code Modulation version 2: deeper analysis of PCM systems and practical applications.</p><div class="info-grid"><p>🎵 Topics: Companding, non-uniform quantization, and PCM performance.</p></div><a href="https://youtu.be/9dDCNjozQq0?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download4" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🎵 PCM Advanced</h4><p>Companding and quantization</p></div><a href="#" class="btn-download" onclick="alert('Lesson 4 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 5: PCM sampling part-2 -->
+    <div id="lesson-5" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 5 / 21</span><h2>digital comm Pulse Code Modulation (PCM) sampling part-2</h2><div class="sub">Sampling Techniques · Aliasing · Anti-aliasing Filter</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video5">🎬 Video</button><button class="tab-btn-lesson" data-tab="download5">📥 Downloads</button></div>
+        <div id="video5" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/FAMTJOM7G_U?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>PCM sampling part 2: sampling techniques, aliasing effects, and anti-aliasing filter design.</p><div class="info-grid"><p>🔊 Topics: Natural sampling, flat-top sampling, sample-and-hold circuits, reconstruction filters.</p></div><a href="https://youtu.be/FAMTJOM7G_U?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download5" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔊 Sampling Guide</h4><p>Aliasing and anti-aliasing</p></div><a href="#" class="btn-download" onclick="alert('Lesson 5 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 6: PCM quantization -->
+    <div id="lesson-6" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 6 / 21</span><h2>digital comm Pulse Code Modulation (PCM) quantization</h2><div class="sub">Quantization · Quantization Error · SNR</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video6">🎬 Video</button><button class="tab-btn-lesson" data-tab="download6">📥 Downloads</button></div>
+        <div id="video6" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/D_jCdNhr0lE?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>PCM quantization: uniform quantization, quantization error calculation, and signal-to-noise ratio.</p><div class="info-grid"><p>📊 Topics: Quantization levels, step size, SQNR, and quantization noise power.</p></div><a href="https://youtu.be/D_jCdNhr0lE?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download6" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📊 Quantization Guide</h4><p>Error and SNR calculation</p></div><a href="#" class="btn-download" onclick="alert('Lesson 6 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 7: PCM quantization V2 -->
+    <div id="lesson-7" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 7 / 21</span><h2>digital comm Pulse Code Modulation (PCM) quantization V2</h2><div class="sub">Non-uniform Quantization · Companding</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video7">🎬 Video</button><button class="tab-btn-lesson" data-tab="download7">📥 Downloads</button></div>
+        <div id="video7" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/zlGrQ59wlX8?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>PCM quantization version 2: non-uniform quantization, companding (μ-law and A-law), and performance analysis.</p><div class="info-grid"><p>📊 Topics: Companding curves, quantization error reduction, and speech coding applications.</p></div><a href="https://youtu.be/zlGrQ59wlX8?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download7" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📊 Companding Guide</h4><p>μ-law and A-law explained</p></div><a href="#" class="btn-download" onclick="alert('Lesson 7 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 8: Delta modulation -->
+    <div id="lesson-8" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 8 / 21</span><h2>digital comm Delta modulation</h2><div class="sub">Delta Modulation · Slope Overload · Granular Noise</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video8">🎬 Video</button><button class="tab-btn-lesson" data-tab="download8">📥 Downloads</button></div>
+        <div id="video8" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/H3OJGWYxroQ?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Delta modulation: principle of operation, slope overload distortion, granular noise, and adaptive delta modulation.</p><div class="info-grid"><p>📈 Topics: Step size optimization, ADM, and comparison with PCM.</p></div><a href="https://youtu.be/H3OJGWYxroQ?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download8" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📈 Delta Modulation Guide</h4><p>DM and ADM notes</p></div><a href="#" class="btn-download" onclick="alert('Lesson 8 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 9: Line Coding and its Types -->
+    <div id="lesson-9" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 9 / 21</span><h2>digital comm Line Coding and its Types (RZ- NRZ- Polar - Unipolar- Bipolar- manchester)</h2><div class="sub">Line Coding Schemes · RZ · NRZ · Polar · Unipolar · Bipolar · Manchester</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video9">🎬 Video</button><button class="tab-btn-lesson" data-tab="download9">📥 Downloads</button></div>
+        <div id="video9" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/74oBijl73bM?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Line coding techniques: RZ, NRZ, Polar, Unipolar, Bipolar, and Manchester encoding schemes.</p><div class="info-grid"><p>🔢 Topics: Power spectral density, DC balance, clock recovery, and error detection.</p></div><a href="https://youtu.be/74oBijl73bM?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download9" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔢 Line Coding Guide</h4><p>All encoding schemes explained</p></div><a href="#" class="btn-download" onclick="alert('Lesson 9 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 10: Line Coding V2 -->
+    <div id="lesson-10" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 10 / 21</span><h2>digital comm Line Coding and its Types V2</h2><div class="sub">Advanced Line Coding · Comparison</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video10">🎬 Video</button><button class="tab-btn-lesson" data-tab="download10">📥 Downloads</button></div>
+        <div id="video10" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/KtnwdKuVaRY?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Line coding version 2: comparative analysis of different line coding schemes and their applications.</p><div class="info-grid"><p>🔢 Topics: Performance comparison, bandwidth requirements, and practical implementations.</p></div><a href="https://youtu.be/KtnwdKuVaRY?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download10" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔢 Line Coding Comparison</h4><p>Performance analysis</p></div><a href="#" class="btn-download" onclick="alert('Lesson 10 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 11: digital example -->
+    <div id="lesson-11" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 11 / 21</span><h2>digital comm - digital example</h2><div class="sub">Practical Examples · Solved Problems</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video11">🎬 Video</button><button class="tab-btn-lesson" data-tab="download11">📥 Downloads</button></div>
+        <div id="video11" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/mB4JT7eh6ko?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Digital communications practical examples and solved problems.</p><div class="info-grid"><p>📝 Topics: Numerical problems, system design examples, and real-world applications.</p></div><a href="https://youtu.be/mB4JT7eh6ko?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download11" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📝 Solved Problems</h4><p>Practice examples PDF</p></div><a href="#" class="btn-download" onclick="alert('Lesson 11 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 12: Baseband Transmission and Digital Multiplexing (ISI) -->
+    <div id="lesson-12" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 12 / 21</span><h2>digital comm Baseband Transmission and Digital Multiplexing (ISI)</h2><div class="sub">Baseband Transmission · ISI · Nyquist Criterion</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video12">🎬 Video</button><button class="tab-btn-lesson" data-tab="download12">📥 Downloads</button></div>
+        <div id="video12" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/LzVIBGj1YZU?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Baseband transmission, digital multiplexing, and Inter-Symbol Interference (ISI) analysis.</p><div class="info-grid"><p>🌐 Topics: Nyquist criterion, raised cosine filtering, eye diagrams, and equalization.</p></div><a href="https://youtu.be/LzVIBGj1YZU?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download12" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🌐 Baseband & ISI Guide</h4><p>Nyquist criterion and filtering</p></div><a href="#" class="btn-download" onclick="alert('Lesson 12 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 13: digital modulation ASK-FSK-PSK v1 -->
+    <div id="lesson-13" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 13 / 21</span><h2>digital comm digital modulation ASK-FSK-PSK v1</h2><div class="sub">ASK · FSK · PSK · Modulation Techniques</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video13">🎬 Video</button><button class="tab-btn-lesson" data-tab="download13">📥 Downloads</button></div>
+        <div id="video13" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/xsY86YVf-00?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Digital modulation techniques: Amplitude Shift Keying (ASK), Frequency Shift Keying (FSK), and Phase Shift Keying (PSK).</p><div class="info-grid"><p>📊 Topics: Modulation principles, bandwidth efficiency, and noise immunity.</p></div><a href="https://youtu.be/xsY86YVf-00?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download13" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📊 ASK FSK PSK Guide</h4><p>Modulation basics</p></div><a href="#" class="btn-download" onclick="alert('Lesson 13 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 14: digital modulation ASK-FSK-PSK v2 -->
+    <div id="lesson-14" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 14 / 21</span><h2>digital comm digital modulation ASK-FSK-PSK v2</h2><div class="sub">Advanced Modulation · Coherent Detection</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video14">🎬 Video</button><button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button></div>
+        <div id="video14" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/xUl1GBnak8g?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Digital modulation version 2: advanced concepts, coherent detection, and performance comparison.</p><div class="info-grid"><p>📊 Topics: Detection methods, error probability, and modulation selection criteria.</p></div><a href="https://youtu.be/xUl1GBnak8g?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download14" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📊 Advanced Modulation</h4><p>Coherent detection guide</p></div><a href="#" class="btn-download" onclick="alert('Lesson 14 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 15: DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK -->
+    <div id="lesson-15" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 15 / 21</span><h2>digital comm DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK</h2><div class="sub">DPSK · DEPSK · QPSK · OQPSK · π/4 QPSK</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button><button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button></div>
+        <div id="video15" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/pxVvoe5kYZ4?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Advanced PSK techniques: DPSK, DEPSK, QPSK, OQPSK, and π/4 QPSK modulation schemes.</p><div class="info-grid"><p>🔀 Topics: Differential encoding, quadrature modulation, phase transitions, and spectral efficiency.</p></div><a href="https://youtu.be/pxVvoe5kYZ4?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download15" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔀 PSK Variants Guide</h4><p>QPSK, OQPSK, DPSK explained</p></div><a href="#" class="btn-download" onclick="alert('Lesson 15 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 16: DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK v2 -->
+    <div id="lesson-16" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 16 / 21</span><h2>digital comm DPSK - DEPSK - QPSK - OQPSK - π/4 QPSK v2</h2><div class="sub">PSK Variants Deep Dive · Implementation</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video16">🎬 Video</button><button class="tab-btn-lesson" data-tab="download16">📥 Downloads</button></div>
+        <div id="video16" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/MTG6HCp5LXQ?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Advanced PSK techniques version 2: implementation details, constellation diagrams, and error performance.</p><div class="info-grid"><p>🔀 Topics: Phase ambiguity resolution, differential detection, and practical applications.</p></div><a href="https://youtu.be/MTG6HCp5LXQ?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download16" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🔀 PSK Implementation</h4><p>Constellation diagrams and detection</p></div><a href="#" class="btn-download" onclick="alert('Lesson 16 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 17: digital comm v1 -->
+    <div id="lesson-17" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 17 / 21</span><h2>digital comm v1</h2><div class="sub">Digital Communications Review · Key Concepts</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video17">🎬 Video</button><button class="tab-btn-lesson" data-tab="download17">📥 Downloads</button></div>
+        <div id="video17" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/Nvymw37eGb0?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Digital communications comprehensive review version 1.</p><div class="info-grid"><p>📡 Topics: Course recap, important formulas, and exam preparation.</p></div><a href="https://youtu.be/Nvymw37eGb0?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download17" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📡 Course Review v1</h4><p>Key concepts summary</p></div><a href="#" class="btn-download" onclick="alert('Lesson 17 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 18: digital comm v2 -->
+    <div id="lesson-18" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 18 / 21</span><h2>digital comm v2</h2><div class="sub">Digital Communications Review · Advanced Topics</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video18">🎬 Video</button><button class="tab-btn-lesson" data-tab="download18">📥 Downloads</button></div>
+        <div id="video18" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/FZbm7Qzv7Ao?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Digital communications comprehensive review version 2: advanced topics and problem solving.</p><div class="info-grid"><p>📡 Topics: Advanced problem solving, system design, and practical scenarios.</p></div><a href="https://youtu.be/FZbm7Qzv7Ao?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download18" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📡 Course Review v2</h4><p>Advanced problem solving</p></div><a href="#" class="btn-download" onclick="alert('Lesson 18 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 19: last digital -->
+    <div id="lesson-19" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 19 / 21</span><h2>last digital</h2><div class="sub">Final Topics · Course Wrap-up</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video19">🎬 Video</button><button class="tab-btn-lesson" data-tab="download19">📥 Downloads</button></div>
+        <div id="video19" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/fDELGadofCY?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Final digital communications topics and course wrap-up.</p><div class="info-grid"><p>🎯 Topics: Final review, key takeaways, and exam preparation.</p></div><a href="https://youtu.be/fDELGadofCY?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download19" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🎯 Final Review</h4><p>Course wrap-up notes</p></div><a href="#" class="btn-download" onclick="alert('Lesson 19 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 20: QAM | m-ary modulation | probability of error -->
+    <div id="lesson-20" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 20 / 21</span><h2>digital comm QAM | m-ary modulation | probability of error</h2><div class="sub">QAM · M-ary Modulation · Error Probability</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video20">🎬 Video</button><button class="tab-btn-lesson" data-tab="download20">📥 Downloads</button></div>
+        <div id="video20" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/sAF5bxZmswg?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Quadrature Amplitude Modulation (QAM), M-ary modulation schemes, and probability of error analysis.</p><div class="info-grid"><p>📐 Topics: QAM constellation, M-ary PSK, M-ary FSK, symbol error rate, and bit error rate.</p></div><a href="https://youtu.be/sAF5bxZmswg?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download20" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📐 QAM & M-ary Guide</h4><p>Error probability analysis</p></div><a href="#" class="btn-download" onclick="alert('Lesson 20 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 21: Probability of Error for BPSK | Gray Code -->
+    <div id="lesson-21" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 21 / 21</span><h2>digital comm Probability of Error for BPSK | Gray Code</h2><div class="sub">BPSK Error Probability · Gray Coding · BER</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video21">🎬 Video</button><button class="tab-btn-lesson" data-tab="download21">📥 Downloads</button></div>
+        <div id="video21" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/stv5736Spcg?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p&rel=0" allowfullscreen></iframe></div></div><div class="description-text"><p>Probability of error calculation for BPSK modulation and Gray code applications in digital communications.</p><div class="info-grid"><p>📐 Topics: BPSK error probability, Q-function, Gray coding benefits, and BER performance.</p></div><a href="https://youtu.be/stv5736Spcg?list=PL8yj0vXkratoLaWKWm8hSkwdyLI6CPr2p" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download21" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📐 BPSK Error Probability</h4><p>BER and Gray code guide</p></div><a href="#" class="btn-download" onclick="alert('Lesson 21 resources downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <footer>📡 CyberDefend Academy — Digital Communications Course (21 modules) | Part of Accenture</footer>
+</div>
+
+<script>
+    function initAllTabs() {
+        document.querySelectorAll('.lesson-card').forEach(card => {
+            const btns = card.querySelectorAll('.tab-btn-lesson');
+            btns.forEach(btn => {
+                btn.removeEventListener('click', (e) => {});
+                btn.addEventListener('click', (e) => {
+                    const parentCard = btn.closest('.lesson-card');
+                    const targetTabId = btn.getAttribute('data-tab');
+                    parentCard.querySelectorAll('.tab-btn-lesson').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    parentCard.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    const targetContent = parentCard.querySelector(`#${targetTabId}`);
+                    if (targetContent) targetContent.classList.add('active');
+                });
+            });
+        });
+    }
+    initAllTabs();
+
+    function stopAllVideos() {
+        document.querySelectorAll('iframe').forEach(iframe => {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        });
+    }
+
+    const navItems = document.querySelectorAll('.nav-item');
+    const totalLessons = 21;
+    
+    function activateLesson(id) {
+        stopAllVideos();
+        for (let i = 1; i <= totalLessons; i++) {
+            const el = document.getElementById(`lesson-${i}`);
+            if (el) el.style.display = 'none';
+        }
+        const target = document.getElementById(`lesson-${id}`);
+        if (target) target.style.display = 'block';
+        navItems.forEach(item => item.classList.remove('active'));
+        const activeItem = document.querySelector(`.nav-item[data-lesson="${id}"]`);
+        if (activeItem) activeItem.classList.add('active');
+    }
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = parseInt(item.getAttribute('data-lesson'));
+            if (!isNaN(id)) { 
+                activateLesson(id); 
+                window.location.hash = `lesson-${id}`; 
+            }
+        });
+    });
+    
+    const hash = window.location.hash.substring(1);
+    if (hash.startsWith('lesson-')) {
+        const num = parseInt(hash.split('-')[1]);
+        if (num >= 1 && num <= totalLessons) activateLesson(num);
+        else activateLesson(1);
+    } else activateLesson(1);
+    
+    window.addEventListener('hashchange', () => {
+        const h = window.location.hash.substring(1);
+        if (h.startsWith('lesson-')) {
+            const n = parseInt(h.split('-')[1]);
+            if (n >= 1 && n <= totalLessons) activateLesson(n);
+        }
+    });
+</script>
+</body>
+</html>
