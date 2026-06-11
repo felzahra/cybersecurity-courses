@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,15 +69,15 @@
     <a href="index.html" class="back-link">← Back to Dashboard</a>
     <div class="nav-list">
          <div style="padding: 8px 20px 4px; font-size:0.7rem; color:#02b3e4; font-weight:600;">🤖 24 VIDEO PLAYLIST</div>
-        <!-- Sidebar navigation reordered: Week 1, Week 2, Week 3, then Week 14 (NLP), Week 15 (CV) -->
         <div class="nav-item" data-lesson="1"><span class="check-icon">💻</span> Week 1 - Introduction to Computers</div>
         <div class="nav-item" data-lesson="2"><span class="check-icon">🖥️</span> Week 2 - Computer Hardware Components</div>
         <div class="nav-item" data-lesson="3"><span class="check-icon">👨‍🏫</span> Week 3 - Software Basic Elements</div>
-        <div class="nav-item active" data-lesson="15"><span class="check-icon">🧠</span> Week 15 - Natural Language Processing</div>
-        <div class="nav-item" data-lesson="16"><span class="check-icon">👁️</span> Week 16 - Computer Vision</div>
+        <div class="nav-item" data-lesson="4"><span class="check-icon">📺</span> Week 4 - Algorithms</div>
+        <div class="nav-item" data-lesson="14"><span class="check-icon">🧠</span> Week 14 - Natural Language Processing</div>
+        <div class="nav-item" data-lesson="15"><span class="check-icon">👁️</span> Week 15 - Computer Vision</div>
     </div>
     <div style="margin-top: auto; padding: 18px; font-size: 0.6rem; color: #8ba0b2; border-top: 1px solid #edf2f7; text-align: center;">
-        ⚡ 2 modules: NLP & Computer Vision with PictoBlox
+        ⚡ 6 modules: Computer Basics + Algorithms + NLP + Computer Vision with PictoBlox
     </div>
 </div>
 <div class="main-content">
@@ -95,7 +97,7 @@
         <div id="download2" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🖥️ Computer Hardware Guide</h4><p>PDF with hardware components and specifications</p></div><a href="https://docs.google.com/presentation/d/1Int7EI0PNJLWGJGk1_UtJKeOU6GSieyG/edit?usp=drive_link" target="_blank" class="btn-download">Download</a></div><div class="download-item"><div class="download-info"><h4>🔧 Hardware Assembly Checklist</h4><p>Step-by-step PC building guide</p></div><a href="#" class="btn-download" onclick="alert('Assembly checklist downloaded'); return false;">Download</a></div></div></div>
     </div>
 
-    <!-- LESSON 3: Week 3 - Software Basic Elements (Mentor Session) -->
+    <!-- LESSON 3: Week 3 - Software Basic Elements -->
     <div id="lesson-3" class="lesson-card" style="display:none;">
         <div class="card-header"><span class="lesson-badge">📺 VIDEO 3 / 24</span><h2>Week 3 - Software Basic Elements</h2><div class="sub">Q&A · Project Review · AI Concepts Discussion</div></div>
         <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video3">🎬 Video</button><button class="tab-btn-lesson" data-tab="download3">📥 Downloads</button></div>
@@ -103,32 +105,39 @@
         <div id="download3" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📝 Mentor Session Notes</h4><p>Key takeaways and Q&A summary</p></div><a href="#" class="btn-download" onclick="alert('Mentor notes downloaded'); return false;">Download</a></div><div class="download-item"><div class="download-info"><h4>🎓 Project Template</h4><p>AI project starter files</p></div><a href="#" class="btn-download" onclick="alert('Project template downloaded'); return false;">Download</a></div></div></div>
     </div>
 
-    <!-- LESSON 15: Week 15 - PictoBlox Natural Language Processing (formerly NLP) -->
+    <!-- LESSON 4: Week 4 - Algorithms -->
+    <div id="lesson-4" class="lesson-card" style="display:none;">
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 4 / 24</span><h2>Week 4 - Algorithms</h2><div class="sub">Algorithm Basics · Sorting · Searching · Problem Solving</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video4">🎬 Video</button><button class="tab-btn-lesson" data-tab="download4">📥 Downloads</button></div>
+        <div id="video4" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/C6hOa9qaV7Q?rel=0&modestbranding=1" allowfullscreen></iframe></div></div><div class="description-text"><p>Introduction to Algorithms: basic concepts, sorting algorithms, searching techniques, and problem-solving strategies.</p><div class="info-grid"><p>📺 Topics: Algorithm design, complexity analysis, sorting (bubble, merge, quick), searching (linear, binary), and practical applications.</p></div><a href="https://www.youtube.com/watch?v=C6hOa9qaV7Q" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
+        <div id="download4" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>📺 Algorithms Guide</h4><p>Sorting and searching algorithms PDF</p></div><a href="#" class="btn-download" onclick="alert('Week 4 resources downloaded'); return false;">Download</a></div><div class="download-item"><div class="download-info"><h4>📝 Algorithm Practice Worksheet</h4><p>Practice exercises</p></div><a href="#" class="btn-download" onclick="alert('Week 4 worksheet downloaded'); return false;">Download</a></div></div></div>
+    </div>
+
+    <!-- LESSON 14: Week 14 - Natural Language Processing -->
     <div id="lesson-14" class="lesson-card" style="display:none;">
-        <div class="card-header"><span class="lesson-badge">📺 VIDEO 14 / 24</span><h2>Week 15 - Natural Language Processing</h2><div class="sub">Text Analysis · Sentiment · Chatbots · NLP with PictoBlox AI</div></div>
-        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button><button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button></div>
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 14 / 24</span><h2>Week 14 - Natural Language Processing</h2><div class="sub">Text Analysis · Sentiment · Chatbots · NLP with PictoBlox AI</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video14">🎬 Video</button><button class="tab-btn-lesson" data-tab="download14">📥 Downloads</button></div>
         <div id="video14" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/6KAzfxtCiZ8?rel=0&modestbranding=1" allowfullscreen></iframe></div></div><div class="description-text"><p>Natural Language Processing with PictoBlox: text recognition, sentiment analysis, and building intelligent chatbots.</p><div class="info-grid"><p>✅ Topics: Tokenization, sentiment analysis, intent recognition, and AI-powered conversations using PictoBlox.</p></div><a href="https://www.youtube.com/watch?v=6KAzfxtCiZ8" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
         <div id="download14" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>🧠 NLP with PictoBlox Guide</h4><p>PDF with NLP concepts and project examples</p></div><a href="https://docs.google.com/presentation/d/1dSlEkXAQUg0nwm0v_KbvB4_KQDt7ycXx/edit?usp=drive_link" target="_blank" class="btn-download">Download</a></div><div class="download-item"><div class="download-info"><h4>📝 Sample Chatbot Scripts</h4><p>Ready-to-use PictoBlox NLP scripts</p></div><a href="#" class="btn-download" onclick="alert('Chatbot scripts downloaded'); return false;">Download</a></div></div></div>
     </div>
 
-    <!-- LESSON 16: Week 16 - PictoBlox Computer Vision (formerly Computer Vision) -->
+    <!-- LESSON 15: Week 15 - Computer Vision -->
     <div id="lesson-15" class="lesson-card" style="display:none;">
-        <div class="card-header"><span class="lesson-badge">📺 VIDEO 15 / 24</span><h2>Week 16 - Computer Vision</h2><div class="sub">Object Detection · Face Recognition · Image Processing with PictoBlox</div></div>
-        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video16">🎬 Video</button><button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button></div>
+        <div class="card-header"><span class="lesson-badge">📺 VIDEO 15 / 24</span><h2>Week 15 - Computer Vision</h2><div class="sub">Object Detection · Face Recognition · Image Processing with PictoBlox</div></div>
+        <div class="lesson-tabs"><button class="tab-btn-lesson active" data-tab="video15">🎬 Video</button><button class="tab-btn-lesson" data-tab="download15">📥 Downloads</button></div>
         <div id="video15" class="tab-content active"><div class="video-container"><div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/SWTyC0Z4OSI?rel=0&modestbranding=1" allowfullscreen></iframe></div></div><div class="description-text"><p>Computer Vision with PictoBlox: object detection, face recognition, emotion detection, and real-time image processing.</p><div class="info-grid"><p>👁️ Topics: Face detection, object tracking, image classification, and AI-based vision projects using PictoBlox.</p></div><a href="https://www.youtube.com/watch?v=SWTyC0Z4OSI" target="_blank" class="btn-youtube">▶️ Watch on YouTube</a></div></div>
         <div id="download15" class="tab-content"><div class="downloads-list"><div class="download-item"><div class="download-info"><h4>👁️ Computer Vision Guide</h4><p>PDF with CV concepts and PictoBlox examples</p></div><a href="https://docs.google.com/presentation/d/1ifTPF6Sp1dyEHczB-M6D5jTIzhRf0tgx/edit?usp=drive_link" target="_blank" class="btn-download">Download</a></div><div class="download-item"><div class="download-info"><h4>📸 Sample Vision Projects</h4><p>Face detection and object tracking scripts</p></div><a href="#" class="btn-download" onclick="alert('Vision projects downloaded'); return false;">Download</a></div></div></div>
     </div>
 
-    <footer>🤖 CyberDefend Academy — Computer Basics + PictoBlox AI Course (24 modules) | Part of Accenture</footer>
+    <footer>🤖 CyberDefend Academy — Computer Basics + Algorithms + PictoBlox AI Course (24 modules) | Part of Accenture</footer>
 </div>
 
 <script>
-    // Tab switching logic for any lesson card (dynamic re-initialization each time needed)
+    // Tab switching logic for any lesson card
     function initAllTabs() {
         document.querySelectorAll('.lesson-card').forEach(card => {
             const btns = card.querySelectorAll('.tab-btn-lesson');
             btns.forEach(btn => {
-                // Remove any previous listener to avoid duplicate toggles
                 const newBtn = btn.cloneNode(true);
                 btn.parentNode.replaceChild(newBtn, btn);
                 newBtn.addEventListener('click', (e) => {
@@ -145,35 +154,32 @@
         });
     }
 
-    // Navigation between lessons (1,2,3,14,15 exactly as per new ordering)
+    // Navigation between lessons
     const navItems = document.querySelectorAll('.nav-item');
-    const TOTAL_VISIBLE_LESSONS = 5;  // we have lesson ids: 1,2,3,14,15 (though code supports any)
-    // mapping of data-lesson values to actual lesson DOM ids (1,2,3,14,15)
+    const validLessonIds = [1, 2, 3, 4, 14, 15];
+
     function activateLesson(lessonId) {
-        // Hide all lesson cards with ids lesson-1, lesson-2, lesson-3, lesson-14, lesson-15
-        const possibleIds = [1,2,3,14,15];
-        possibleIds.forEach(id => {
+        validLessonIds.forEach(id => {
             const card = document.getElementById(`lesson-${id}`);
             if (card) card.style.display = 'none';
         });
         const targetCard = document.getElementById(`lesson-${lessonId}`);
         if (targetCard) targetCard.style.display = 'block';
-        // Update active state on sidebar
+        
         navItems.forEach(item => item.classList.remove('active'));
         const activeNav = document.querySelector(`.nav-item[data-lesson="${lessonId}"]`);
         if (activeNav) activeNav.classList.add('active');
         
-        // Reinitialize tabs for the newly visible card (ensures event listeners work)
         initAllTabs();
     }
 
-    // Attach click handlers for each navigation item
+    // Attach click handlers for navigation items
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const lessonVal = item.getAttribute('data-lesson');
             if (lessonVal) {
                 const idNum = parseInt(lessonVal, 10);
-                if (!isNaN(idNum) && (idNum === 1 || idNum === 2 || idNum === 3 || idNum === 14 || idNum === 15)) {
+                if (!isNaN(idNum) && validLessonIds.includes(idNum)) {
                     activateLesson(idNum);
                     window.location.hash = `lesson-${idNum}`;
                 }
@@ -187,39 +193,33 @@
         if (hash.startsWith('lesson-')) {
             const numStr = hash.split('-')[1];
             const num = parseInt(numStr, 10);
-            if (!isNaN(num) && (num === 1 || num === 2 || num === 3 || num === 14 || num === 15)) {
+            if (!isNaN(num) && validLessonIds.includes(num)) {
                 activateLesson(num);
                 return;
             }
         }
-        // Default if no valid hash -> show Week 1 (lesson 1) as per reorder
         activateLesson(1);
         window.location.hash = 'lesson-1';
     }
 
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // initial load
+    handleHashChange();
 
-    // additional safe init
     initAllTabs();
     
-    // also if any manual dynamic content, ensure download dummy alerts don't break
-    // All fake download buttons remain functional with alert messages.
-    // fix for any potential double-tab initialization
+    // Fix for download buttons
     document.querySelectorAll('.btn-download').forEach(btn => {
         if (!btn.hasAttribute('data-listener')) {
             btn.setAttribute('data-listener', 'true');
-            // keep original onclick if present else preserve
             if (!btn.getAttribute('onclick')) {
                 btn.addEventListener('click', (e) => {
-                    if(btn.getAttribute('onclick')) return;
                     alert('Download started (sample resource).');
                 });
             }
         }
     });
     
-    // small patch to guarantee youtube links open in new tab and prevent event interference
+    // Fix for YouTube links
     document.querySelectorAll('.btn-youtube').forEach(link => {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
@@ -227,3 +227,4 @@
 </script>
 </body>
 </html>
+```
