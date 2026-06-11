@@ -195,7 +195,10 @@
         if (hash.startsWith('lesson-')) {
             const numStr = hash.split('-')[1];
             const num = parseInt(numStr, 10);
-            if (!isNaN(num) && (num === 1 || num === 2 || num === 3 || num === 14 || num === 15)) {
+            if (!isNaN(num) && (num === 1 || num === 2 || num === 3 || num === 4 || num === 14 || num === 15)) {
+    activateLesson(num);
+    return;
+}
                 activateLesson(num);
                 return;
             }
