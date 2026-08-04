@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>CyberDefend Academy · Main Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7fc;
+            color: #1a2c3e;
+            overflow-x: hidden;
+        }
+
+        /* Main app wrapper */
+        .app-wrapper {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Hide app content when logged out */
+        body.logged-out .app-wrapper {
+            display: none;
+        }
+
+        /* Full screen login container */
+        .fullscreen-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.logged-out .fullscreen-login {
+            display: flex;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 32px;
+            padding: 48px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-card .logo-icon {
+            background: #02b3e4;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(2, 179, 228, 0.3);
+        }
+
+        .login-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #1a2c3e;
+        }
+
+        .login-card p {
+            color: #5c6f87;
+            margin-bottom: 32px;
+        }
+
+        .login-error {
+            color: #ef4444;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Sidebar Overlay for Mobile */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: #ffffff;
+            border-right: 1px solid #e6edf4;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 999;
+            transition: left 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                height: 100%;
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+            }
+            .sidebar.open {
+                left: 0;
+            }
+        }
+
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track { background: #f0f2f5; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .brand {
+            padding: 24px 24px 16px 24px;
+            border-bottom: 1px solid #eef2f8;
+            background: linear-gradient(135deg, #ffffff 0%, #fafcff 100%);
+        }
+        .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .logo-icon {
+            background: #02b3e4; width: 44px; height: 44px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; box-shadow: 0 6px 12px rgba(2, 179, 228, 0.2);
+        }
+        .logo-text h1 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; color: #0b2b3b; line-height: 1.2; }
+        .logo-text span { font-size: 0.65rem; color: #02b3e4; font-weight: 600; letter-spacing: 1px; }
+        .tagline { font-size: 0.7rem; color: #5c6f87; margin-top: 8px; border-left: 3px solid #02b3e4; padding-left: 10px; }
+        
+        .progress-card {
+            background: #f0f9fe; margin: 16px 20px; padding: 12px 16px;
+            border-radius: 20px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .progress-text { font-size: 0.7rem; font-weight: 600; }
+        .progress-number { font-size: 1.2rem; font-weight: 800; color: #02b3e4; }
+        
+        .about-card {
+            background: #fef9e6; margin: 16px 20px 8px 20px; padding: 16px;
+            border-radius: 24px; border: 1px solid #ffe6b3;
+            transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .about-card:hover { background: #fff6e0; border-color: #ffd966; }
+        .about-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .avatar {
+            width: 48px; height: 48px; background: linear-gradient(145deg, #02b3e4, #0284a5);
+            border-radius: 60px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 600; color: white; box-shadow: 0 4px 8px rgba(2,179,228,0.2);
+        }
+        .about-title { font-weight: 700; font-size: 0.9rem; color: #1e293b; letter-spacing: -0.2px; }
+        .about-title span { font-size: 0.7rem; font-weight: 400; color: #5f6c84; display: block; margin-top: 2px; }
+        .about-bio { font-size: 0.7rem; line-height: 1.4; color: #2d3a4b; margin-bottom: 12px; padding-right: 4px; }
+        .linkedin-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: #0077b5;
+            color: white; text-decoration: none; font-size: 0.7rem; font-weight: 500;
+            padding: 6px 14px; border-radius: 30px; transition: 0.2s; width: fit-content;
+        }
+        .linkedin-btn:hover { background: #005e8c; transform: scale(0.97); box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        
+        .main-tabs { display: flex; border-bottom: 1px solid #eef2f8; background: #fff; padding: 0 12px; gap: 4px; margin-top: 8px; }
+        .tab-btn {
+            flex: 1; background: transparent; border: none; padding: 12px 0;
+            font-weight: 600; font-size: 0.8rem; color: #5f7f9c; cursor: pointer;
+            font-family: inherit; border-radius: 12px 12px 0 0; transition: 0.2s;
+            text-decoration: none; text-align: center; display: inline-block;
+        }
+        .tab-btn.active { color: #02b3e4; border-bottom: 3px solid #02b3e4; background: #f9fbfe; }
+
+        .sidebar-announ-btn {
+            display: block;
+            margin: 16px 20px 8px 20px;
+            padding: 12px 16px;
+            background: #02b3e4;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(2, 179, 228, 0.2);
+        }
+        .sidebar-announ-btn:hover {
+            background: #0284a5;
+            transform: translateY(-2px);
+        }
+
+        .sidebar-apk-btn {
+            display: block;
+            margin: 0 20px 16px 20px;
+            padding: 12px 16px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+        }
+        .sidebar-apk-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .sign-out-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 20px 16px 20px;
+            width: calc(100% - 40px);
+            transition: 0.2s;
+        }
+        .sign-out-btn:hover {
+            background: #dc2626;
+            transform: scale(0.98);
+        }
+
+        .menu-toggle-btn {
+            background: #02b3e4;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(2, 179, 228, 0.2);
+            transition: 0.2s;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle-btn {
+                display: inline-flex;
+            }
+        }
+
+        .content-area { flex: 1; overflow-y: auto; padding: 40px; text-align: center; }
+        .hero-card {
+            max-width: 800px; margin: 20px auto; background: white;
+            border-radius: 32px; padding: 48px; border: 1px solid #eef2f8;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02); text-align: center;
+        }
+        .hero-card h2 { font-size: 2rem; margin-bottom: 16px; color: #0b2b3b; }
+        .btn-large {
+            display: inline-block; margin-top: 24px; padding: 12px 28px;
+            background: #02b3e4; color: white; border-radius: 40px; text-decoration: none;
+            font-weight: 600; transition: 0.2s; border: none; cursor: pointer;
+        }
+        .btn-large:hover { background: #0284a5; transform: translateY(-2px); }
+        .course-grid { display: flex; gap: 24px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+        .course-card {
+            background: white; border-radius: 24px; padding: 28px; width: 260px;
+            border: 1px solid #eef2f8; text-decoration: none; color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s; display: block; text-align: center;
+        }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); }
+        .course-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .course-card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+        
+        .paid-card {
+            border: 2px solid #f59e0b;
+            background: #fffdf5;
+            position: relative;
+        }
+        .paid-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #f59e0b;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        footer { margin-top: 60px; font-size: 0.7rem; color: #8a9cb0; }
+
+        /* CHATBOT STYLES */
+        .chatbot-toggle {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: #02b3e4; border-radius: 50%; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(2, 179, 228, 0.4); display: flex;
+            align-items: center; justify-content: center; font-size: 1.8rem;
+            color: white; border: none; z-index: 999; transition: transform 0.3s;
+        }
+        .chatbot-toggle:hover { transform: scale(1.05); }
+        .chatbot-window {
+            position: fixed; bottom: 100px; right: 25px; width: 350px; height: 450px;
+            background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none; flex-direction: column; overflow: hidden; z-index: 999; border: 1px solid #e6edf4;
+        }
+        .chatbot-header { background: #02b3e4; color: white; padding: 15px; display: flex; align-items: center; gap: 10px; font-weight: 600; text-align: left;}
+        .chatbot-header span { font-size: 1.2rem; }
+        .chatbot-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9fbfe; display: flex; flex-direction: column; gap: 10px; }
+        .chat-msg { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; line-height: 1.4; text-align: left;}
+        .bot-msg { background: white; border: 1px solid #eef2f8; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user-msg { background: #02b3e4; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .chatbot-input-area { display: flex; padding: 10px; background: white; border-top: 1px solid #eef2f8; }
+        .chatbot-input { flex: 1; padding: 10px 14px; border: 1px solid #e6edf4; border-radius: 20px; outline: none; font-family: inherit; font-size: 0.85rem; }
+        .chatbot-send { background: #02b3e4; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 8px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .chatbot-send:hover { background: #0284a5; }
+
+        @media (max-width: 780px) {
+            .content-area { padding: 20px; }
+            .hero-card { padding: 28px; margin: 20px auto; }
+            .about-card { margin: 12px 16px; }
+            .chatbot-window { width: 300px; height: 400px; }
+        }
+    </style>
+</head>
+<body class="logged-out">
+
+    <!-- Full Screen Google Authentication Modal -->
+    <div class="fullscreen-login" id="fullscreenLogin">
+        <div class="login-card">
+            <div class="logo-icon">🛡️</div>
+            <h2>CyberDefend Academy</h2>
+            <p>Master Cybersecurity, Networking, and Incident Response</p>
+            <div id="googleButton"></div>
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app-wrapper">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <div class="sidebar" id="courseSidebar">
+            <div class="brand">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div class="logo-text">
+                        <h1>CyberDefend</h1>
+                        <span>ACADEMY</span>
+                    </div>
+                </div>
+                <div class="tagline">Part of Accenture | Defend · Detect · Respond</div>
+            </div>
+
+            <div class="about-card">
+                <div class="about-header">
+                    <div class="avatar">FA</div>
+                    <div class="about-title">
+                        Fatma Alzahra AlAgery <span>Cybersecurity Specialist</span>
+                    </div>
+                </div>
+                <div class="about-bio">
+                    🔐 Security analyst & cyber range instructor. Passionate about SIEM, threat hunting, and digital forensics. 
+                    Empowering next-gen defenders through hands-on labs.
+                </div>
+                <a href="https://www.linkedin.com/in/fatmaagery/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+                    <span>🔗</span> Connect on LinkedIn
+                </a>
+            </div>
+
+            <div class="progress-card">
+                <span class="progress-text">📈 Course Progress</span>
+                <span class="progress-number">99%</span>
+            </div>
+
+            <div class="main-tabs">
+                <a href="index.html" class="tab-btn active">📘 COURSES</a>
+                <a href="projects.html" class="tab-btn">🚀 PROJECTS</a>
+                <a href="media.html" class="tab-btn">🎨 MEDIA & GIFs</a>
+            </div>
+
+            <a href="comments.html" class="sidebar-announ-btn">📢 Announcements & FAQ</a>
+            <a href="https://drive.google.com/drive/folders/10PVVRv2NkD7oRvSrJfzkun0NQ3KYc7wO?usp=sharing" target="_blank" class="sidebar-apk-btn">📱 Download Mobile APP APK</a>
+
+            <button class="sign-out-btn" id="signOutBtn" onclick="signOut()">🚪 Sign Out</button>
+
+            <div style="margin-top: auto; padding: 20px; font-size: 0.65rem; color: #8ba0b2; border-top: 1px solid #edf2f7;">
+                ⚡ Complete cybersecurity training
+            </div>
+        </div>
+
+        <div class="content-area">
+            <button class="menu-toggle-btn" id="menuToggleBtn">☰ Course Menu</button>
+            
+            <div class="hero-card">
+                <h2>🛡️ Welcome to CyberDefend Academy</h2>
+                <p style="margin: 16px 0; color: #5c6f87;">Master Cybersecurity, Networking, and Incident Response with hands-on labs.</p>
+                
+                <div class="course-grid">
+                    <a href="DPA.html" class="course-card">
+                        <div class="course-icon">🔀</div>
+                        <h3>DPA Summer Training Course</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Damietta Port Summer Training</p>
+                    </a>
+                    <a href="level3.html" class="course-card">
+                        <div class="course-icon">🔐</div>
+                        <h3>1- Introduction to Cybersecurity</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Foundations & Core Concepts</p>
+                    </a>
+                    <a href="cybersecurity-course.html" class="course-card">
+                        <div class="course-icon">🔐</div>
+                        <h3>2- Cybersecurity Course</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Attack Types · SIEM · Threat Hunting</p>
+                    </a>
+                    
+                    <!-- NEW PAID COURSE ENTRY -->
+                    <a href="paid-cybersecurity-course.html" class="course-card paid-card">
+                        <span class="paid-badge">PREMIUM</span>
+                        <div class="course-icon">💎</div>
+                        <h3>3- Cybersecurity Course (Payed Course)</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Advanced Hands-on Labs & Exclusive Content</p>
+                    </a>
+
+                    <a href="networking.html" class="course-card">
+                        <div class="course-icon">🌐</div>
+                        <h3>CyberSecurity Reading Slides</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Reading Slides</p>
+                    </a>
+                    <a href="routing-switching.html" class="course-card">
+                        <div class="course-icon">🛡️</div>
+                        <h3>English CyberSecurity Course</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Attack Types · SIEM · Threat Hunting</p>
+                    </a>
+                    <a href="2026.html" class="course-card">
+                        <div class="course-icon">🎬</div>
+                        <h3>2026 Lectures</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">Recorded Sessions & Videos</p>
+                    </a>
+                    <a href="aws foundation.html" class="course-card">
+                        <div class="course-icon">🤖</div>
+                        <h3>aws cloud foundation</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">aws cloud solutions</p>
+                    </a>
+                    <a href="digital comm.html" class="course-card">
+                        <div class="course-icon">🧠</div>
+                        <h3>digital comm</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">digital com</p>
+                    </a>
+                    <a href="wireless comm.html" class="course-card">
+                        <div class="course-icon">🎯️</div>
+                        <h3>wireless comm</h3>
+                        <p style="font-size:0.8rem; color:#5c6f87;">wireless comm</p>
+                    </a>
+                </div>
+                
+                <a href="cybersecurity-course.html" class="btn-large">Start Cybersecurity Course →</a>
+            </div>
+            <footer>© CyberDefend Academy · Part of Accenture</footer>
+        </div>
+    </div>
+
+    <!-- CHATBOT HTML -->
+    <button class="chatbot-toggle" id="chatbot-toggle">💬</button>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <span>🛡️</span>
+            <div>CyberDefend Assistant<br><small style="font-size:0.7rem; font-weight:400;">Typically replies instantly</small></div>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chat-msg bot-msg">Hello! Welcome to CyberDefend Academy. How can I help you today?</div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message...">
+            <button class="chatbot-send" id="chatbot-send">➤</button>
+        </div>
+    </div>
+
+    <!-- Google Authentication Script -->
+    <script src="https://accounts.google.com/gsi/client" async></script>
+
+    <script>
+        // ========== GOOGLE AUTHENTICATION CONFIGURATION ==========
+        const GOOGLE_CLIENT_ID = '541265811974-g4j0gg04kmfabp75qgkkdvgplknnsb43.apps.googleusercontent.com';
+        const APPROVED_EMAILS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRNwvIEtWzzXZ7_tp8pxiv0YRPQ48cgbLh1iC-bv18oFa2o4S61xw4tHTC8x3SEpc4FqgqjtXxL_5gi/pub?output=csv';
+
+        async function isEmailApproved(email) {
+            try {
+                const response = await fetch(APPROVED_EMAILS_URL);
+                const csvText = await response.text();
+                const lines = csvText.split('\n');
+                for (let line of lines) {
+                    const approvedEmail = line.trim().toLowerCase();
+                    if (approvedEmail && approvedEmail === email.toLowerCase()) {
+                        return true;
+                    }
+                }
+                return false;
+            } catch (error) {
+                console.error('Error checking approval:', error);
+                return false;
+            }
+        }
+
+        async function handleCredentialResponse(response) {
+            try {
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                const userEmail = payload.email;
+                const userName = payload.name;
+                
+                const approved = await isEmailApproved(userEmail);
+                
+                if (approved) {
+                    localStorage.setItem('cyberdefend_logged_in', 'true');
+                    localStorage.setItem('cyberdefend_user_email', userEmail);
+                    localStorage.setItem('cyberdefend_user_name', userName);
+                    
+                    document.body.classList.remove('logged-out');
+                } else {
+                    const errorDiv = document.getElementById('loginError');
+                    if (errorDiv) {
+                        errorDiv.innerHTML = '❌ Access denied. Your email is not authorized. Please contact the instructor for access.';
+                    }
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                const errorDiv = document.getElementById('loginError');
+                if (errorDiv) {
+                    errorDiv.innerHTML = '❌ Login failed. Please try again.';
+                }
+            }
+        }
+
+        function signOut() {
+            localStorage.removeItem('cyberdefend_logged_in');
+            localStorage.removeItem('cyberdefend_user_email');
+            localStorage.removeItem('cyberdefend_user_name');
+            document.body.classList.add('logged-out');
+            initGoogleButton();
+        }
+
+        function initGoogleButton() {
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.renderButton(
+                    document.getElementById('googleButton'),
+                    { theme: 'outline', size: 'large', width: 300 }
+                );
+            }
+        }
+
+        // Sidebar logic for Mobile screens
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.getElementById('courseSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        function openSidebar() {
+            if (sidebar) sidebar.classList.add('open');
+            if (overlay) overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            if (sidebar) sidebar.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        if (menuToggleBtn) menuToggleBtn.onclick = openSidebar;
+        if (overlay) overlay.onclick = closeSidebar;
+
+        // CHATBOT LOGIC
+        const toggleBtn = document.getElementById('chatbot-toggle');
+        const chatWindow = document.getElementById('chatbot-window');
+        
+        toggleBtn.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        const sendBtn = document.getElementById('chatbot-send');
+        const inputField = document.getElementById('chatbot-input');
+        const chatBody = document.getElementById('chatbot-body');
+
+        async function sendMessage() {
+            const text = inputField.value.trim();
+            if (text === '') return;
+
+            const userMsg = document.createElement('div');
+            userMsg.classList.add('chat-msg', 'user-msg');
+            userMsg.innerText = text;
+            chatBody.appendChild(userMsg);
+
+            inputField.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNKVvnHqCkvDMPoaoC_qjagMrumCtUd8V7NTvltqXLdbSp8C2q_v2_Sg7xnxNQN1-WTg/exec";
+            
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+            } catch (error) {
+                console.error("Error sending message:", error);
+            }
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.classList.add('chat-msg', 'bot-msg');
+                botMsg.innerText = "Thank you! Your message has been recorded successfully. We will get back to you soon.";
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 800);
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Initialize Authentication Status
+        window.onload = function() {
+            const savedLogin = localStorage.getItem('cyberdefend_logged_in');
+            if (savedLogin === 'true') {
+                document.body.classList.remove('logged-out');
+            } else {
+                document.body.classList.add('logged-out');
+                initGoogleButton();
+            }
+        };
+    </script>
+</body>
+</html>
